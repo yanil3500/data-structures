@@ -8,6 +8,7 @@ class Node:
     supporting class for linked list
     """
     def __init__(self, val):
+        """."""
         self.val = val
         self.next = None
 
@@ -19,10 +20,12 @@ class LinkedList:
     head = None
     length = 0
     def __init__(self,values_list=[]):
+        """Initialize LinkedList."""
         if len(values_list) > 0:
             """where we create Nodes"""
 
     def push(self, value):
+        """"""
         if self.head == None:
             self.head = Node(value)
             self.length += 1
@@ -34,15 +37,20 @@ class LinkedList:
             self.length += 1
 
     def pop(self):
+        """."""
         if self.length > 0:
             temp_node = self.head
             self.head = self.head.next
             self.length -= 1
             return temp_node
-
+        else:
+            print('No values to pop.')
+            raise TypeError
 
     def size(self):
+        """."""
         return self.length
+
 
 def main():
     """
