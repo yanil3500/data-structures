@@ -22,7 +22,9 @@ class LinkedList:
     def __init__(self,values_list=[]):
         """Initialize LinkedList."""
         if len(values_list) > 0:
-            """where we create Nodes"""
+            for i in range(len(values_list)):
+                self.push(values_list[i])
+
 
     def push(self, value):
         """"""
@@ -62,7 +64,27 @@ class LinkedList:
 
     def remove(self, node_to_remove):
         """."""
-        pass
+        if self.length > 0:
+            previous_node = self.head
+            temp_node = self.head.next
+
+            if previous_node == node_to_remove:
+                self.head = self.head.next
+                previous_node.next = None
+                return True
+
+
+            while temp_node != None:
+                if temp_node == node_to_remove:
+                    previous_node.next = node_to_remove.next
+                    temp_node.next = None
+                    return True
+
+                else:
+                    previous_node = temp_node
+                    temp_node = temp_node.next
+
+            return False
 
 
     def size(self):
