@@ -45,12 +45,18 @@ PARAMETERS_LIST_FOR_REMOVE = [
     (7, False)
 ]
 
+PARAMETERS_LIST_FOR_DISPLAY = [
+    ([5, 4, 3 , 2, 1], str),
+    (['A', 'B', 'C', 'E', 'F'], str),
+    (['$', 'L', '7', 3, 2], str)
+]
+
 MOCK_LINKED_LIST = linked_list.LinkedList()
 
 
 def helper_teardown(an_object):
     """
-    reset the linked list
+    resets the linked list
     """
     an_object.head = None
     an_object.length = 0
@@ -62,7 +68,7 @@ def test_push(val, result):
     test push function
     """
     MOCK_LINKED_LIST.push(val)
-    assert MOCK_LINKED_LIST.size() == result
+    assert len(MOCK_LINKED_LIST) == result
 
 
 @pytest.mark.parametrize('val, result', PARAMETERS_LIST_FOR_POP)
@@ -82,7 +88,7 @@ def test_size(val, result):
     test for size function
     """
     MOCK_LINKED_LIST.push(val)
-    assert MOCK_LINKED_LIST.size() == result
+    assert len(MOCK_LINKED_LIST) == result
 
 
 @pytest.mark.parametrize('val, result', PARAMETERS_LIST_FOR_SEARCH)
@@ -108,3 +114,17 @@ def test_remove(value, result):
         MOCK_LINKED_LIST.push(number)
     node_from_list = MOCK_LINKED_LIST.search(value)
     assert MOCK_LINKED_LIST.remove(node_from_list) == result
+
+
+@pytest.mark.parametrize('values, result', PARAMETERS_LIST_FOR_DISPLAY)
+def test_display(values, result):
+    """
+    test for display method
+    """
+    helper_teardown(MOCK_LINKED_LIST)
+    for number in values:
+        MOCK_LINKED_LIST.push(number)
+
+    print(MOCK_LINKED_LIST)
+    result = str(MOCK_LINKED_LIST)
+    assert str(MOCK_LINKED_LIST) == result
