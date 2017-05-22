@@ -41,7 +41,7 @@ PARAMETERS_LIST_FOR_REMOVE = [
     (2, True),
     (3, True),
     (4, True),
-    (5, False),
+    (1000, False),
     (7, False)
 ]
 
@@ -102,5 +102,9 @@ def test_remove(value, result):
     """
     test for remove method
     """
-    node_from_list = MOCK_LINKED_LIST(value)
+    helper_teardown(MOCK_LINKED_LIST)
+    for number in range(0, 5):
+        print('The number before being push onto list: {}'.format(number))
+        MOCK_LINKED_LIST.push(number)
+    node_from_list = MOCK_LINKED_LIST.search(value)
     assert MOCK_LINKED_LIST.remove(node_from_list) == result
