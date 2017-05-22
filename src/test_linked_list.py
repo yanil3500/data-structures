@@ -23,9 +23,6 @@ PARAMETERS_LIST_FOR_POP = [
 MOCK_LINKED_LIST = linked_list.Singly_Linked_List()
 
 
-
-
-
 @pytest.mark.parametrize('val, result', PARAMETERS_LIST_FOR_PUSH)
 def test_push(val, result):
     """
@@ -34,10 +31,13 @@ def test_push(val, result):
     MOCK_LINKED_LIST.push(val)
     assert MOCK_LINKED_LIST.size() == result
 
+
 @pytest.mark.parametrize('result', PARAMETERS_LIST_FOR_POP)
-def test_pop():
+def test_pop(result):
     """
     test pop function
     """
+    assert MOCK_LINKED_LIST.pop() == result
+
 
 

@@ -20,5 +20,12 @@ class Singly_Linked_List:
     length = 0
 
 
+def main():
+    """
+    main function
+    """
+    print('main function')
+
+
 if __name__ == '__main__':
     main()
