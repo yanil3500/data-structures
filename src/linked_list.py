@@ -50,7 +50,7 @@ class LinkedList:
     def search(self, val):
         if self.length > 0:
             temp_node = self.head
-            for i in range(len(self.length)):
+            for i in range(self.length):
                 if temp_node.val == val:
                     return temp_node
 
