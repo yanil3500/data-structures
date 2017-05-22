@@ -47,6 +47,23 @@ class LinkedList:
             print('No values to pop.')
             raise TypeError
 
+    def search(self, val):
+        if self.length > 0:
+            temp_node = self.head
+            for i in range(len(self.length)):
+                if temp_node.val == val:
+                    return temp_node
+
+                else:
+                    temp_node = temp_node.next
+
+        return None
+
+    def remove(self, node_to_remove):
+        """."""
+        pass
+
+
     def size(self):
         """."""
         return self.length
