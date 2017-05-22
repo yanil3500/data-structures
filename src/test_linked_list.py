@@ -37,12 +37,12 @@ PARAMETERS_LIST_FOR_SEARCH = [
 ]
 
 PARAMETERS_LIST_FOR_REMOVE = [
-    (linked_list.Node, True),
-    (linked_list.Node('B'), True),
-    (linked_list.Node('78'), True),
-    (1, False),
-    (3, False),
-    (linked_list.Node(6), False),
+    (1, True),
+    (2, True),
+    (3, True),
+    (4, True),
+    (5, False),
+    (7, False)
 ]
 
 MOCK_LINKED_LIST = linked_list.LinkedList()
@@ -85,15 +85,6 @@ def test_size(val, result):
     assert MOCK_LINKED_LIST.size() == result
 
 
-@pytest.mark.parametrize('node, result', PARAMETERS_LIST_FOR_REMOVE)
-def test_remove(node, result):
-    """
-    test for remove method
-    """
-    MOCK_LINKED_LIST.head = node
-    assert MOCK_LINKED_LIST.remove(node) == result
-
-
 @pytest.mark.parametrize('val, result', PARAMETERS_LIST_FOR_SEARCH)
 def test_search(val, result):
     """
@@ -106,3 +97,10 @@ def test_search(val, result):
     assert MOCK_LINKED_LIST.search(val) == result
 
 
+@pytest.mark.parametrize('value, result', PARAMETERS_LIST_FOR_REMOVE)
+def test_remove(value, result):
+    """
+    test for remove method
+    """
+    node_from_list = MOCK_LINKED_LIST(value)
+    assert MOCK_LINKED_LIST.remove(node_from_list) == result
