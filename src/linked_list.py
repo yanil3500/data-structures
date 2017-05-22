@@ -8,7 +8,7 @@ class Node:
     supporting class for linked list
     """
     def __init__(self, val):
-        """."""
+        """Initialize a Node with a given value"""
         self.val = val
         self.next = None
 
@@ -27,7 +27,7 @@ class LinkedList:
 
 
     def push(self, value):
-        """"""
+        """Push value to front of LinkedList."""
         if self.head == None:
             self.head = Node(value)
             self.length += 1
@@ -39,7 +39,7 @@ class LinkedList:
             self.length += 1
 
     def pop(self):
-        """."""
+        """Pop value from front of LinkedList."""
         if self.length > 0:
             temp_node = self.head
             self.head = self.head.next
@@ -50,7 +50,7 @@ class LinkedList:
             raise TypeError
 
     def search(self, val):
-        """."""
+        """Return the node of a given value."""
         if self.length > 0:
             temp_node = self.head
 
@@ -63,7 +63,7 @@ class LinkedList:
         return None
 
     def remove(self, node_to_remove):
-        """."""
+        """Remove a node from LinkedList and return True."""
         if self.length > 0:
             previous_node = self.head
             temp_node = self.head.next
@@ -90,19 +90,24 @@ class LinkedList:
 
 
     def __len__(self):
-        """."""
+        """Return length of LinkedList."""
         return self.length
 
     def display(self):
+        """Return a unicode string representation of LinkedList."""
         if self.length > 0:
             linked_list_string = '('
             temp_node = self.head
             while temp_node != None:
                 linked_list_string += '{},'.format(temp_node.val)
 
+            linked_list_string = linked_list_string[:-1]
+            linked_list_string += ')'
+
             return linked_list_string
 
     def __str__(self):
+        """."""
         return self.display()
 
 
