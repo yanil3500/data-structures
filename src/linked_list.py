@@ -100,6 +100,7 @@ class LinkedList:
             temp_node = self.head
             while temp_node != None:
                 linked_list_string += '{},'.format(temp_node.val)
+                temp_node = temp_node.next
 
             linked_list_string = linked_list_string[:-1]
             linked_list_string += ')'
