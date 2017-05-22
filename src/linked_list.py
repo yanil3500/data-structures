@@ -71,13 +71,15 @@ class LinkedList:
             if previous_node == node_to_remove:
                 self.head = self.head.next
                 previous_node.next = None
+                self.length -= 1
                 return True
 
 
             while temp_node != None:
                 if temp_node == node_to_remove:
-                    previous_node.next = node_to_remove.next
-                    temp_node.next = None
+                    previous_node.next = temp_node.next
+                    node_to_remove = None
+                    self.length -= 1
                     return True
 
                 else:
@@ -87,17 +89,29 @@ class LinkedList:
             return False
 
 
-    def size(self):
+    def __len__(self):
         """."""
         return self.length
 
+    def display(self):
+        if self.length > 0:
+            linked_list_string = '('
+            temp_node = self.head
+            while temp_node != None:
+                linked_list_string += '{},'.format(temp_node.val)
 
-def main():
+            return linked_list_string
+
+    def __str__(self):
+        return self.display()
+
+
+def main(): # pragma: no cover
     """
     main function
     """
     print('main function')
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
     main()
