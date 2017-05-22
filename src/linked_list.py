@@ -48,12 +48,13 @@ class LinkedList:
             raise TypeError
 
     def search(self, val):
+        """."""
         if self.length > 0:
             temp_node = self.head
-            for i in range(self.length - 1):
+
+            while (temp_node != None):
                 if temp_node.val == val:
                     return temp_node
-
                 else:
                     temp_node = temp_node.next
 
