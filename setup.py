@@ -4,13 +4,14 @@ setup for data-structures
 from setuptools import setup
 
 DEPENDENCIES = ['pytest', 'pytest-cov', 'ipython']
-MODULES = ['linked_list']
+MODULES = ['linked_list', 'stack']
 EXTRA_PACKAGES = {
     'test': ['tox']
 }
 CONSOLE_SCRIPTS = {
     'console_scripts': [
-        'linked_list = linked_list:main'
+        'linked_list = linked_list:main',
+        'stack = stack:main'
     ]
 }
 setup(
