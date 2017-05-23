@@ -46,8 +46,7 @@ class LinkedList:
             self.length -= 1
             return temp_node
         else:
-            print('No values to pop.')
-            raise TypeError
+            raise IndexError('Does not contain anymore elements. Cannot remove non-existing elements.')
 
     def search(self, val):
         """Return the node of a given value."""
@@ -117,7 +116,7 @@ def main(): # pragma: no cover
     main function
     """
 
-    sll = LinkedList(values_list=[1, 2, 3, 4, 5, 6, 'potato', 'bananas'])
+    sll = LinkedList([1, 2, 3, 4, 5, 6, 'potato', 'bananas'])
 
     # Prints the linked list (test the print special method)
     print('The linked list: \n', sll)

@@ -1,4 +1,4 @@
-# data-structures
+# Data Structures
 The sample code contained herein will hold a number of classic data structures implemented in Python.
 
 **Contributors**
@@ -8,3 +8,7 @@ The sample code contained herein will hold a number of classic data structures i
 **Singly Linked List** 
 - **Implementation**: `linked_list.py`
 - **Tests**: `test_linked_list.py`
+
+**Stack**
+- **Implementation**: `stack.py`
+- **Tests**: `test_stack.py`
