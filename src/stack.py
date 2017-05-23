@@ -10,6 +10,10 @@ class Stack(object):
         if type(iterable) in [list, tuple, str]:
             self._container = LinkedList(iterable=iterable)
 
+        else:
+            self._container = LinkedList()
+
+
     def push(self, value):
         """
         uses the linked list as the underlying data structure
