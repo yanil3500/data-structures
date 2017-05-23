@@ -7,7 +7,10 @@ import pytest
 INIT_TABLE = [
     ([1, 2, 3, 'four', 'five'], 5),
     ((999, 12, 'three'), 3),
-    ('this string will become a linked list', 37)
+    ('this string will become a linked list', 37),
+    (None, 0),
+    (None, 0),
+    (None, 0)
 ]
 
 INIT_ERROR_TABLE = [
