@@ -10,7 +10,7 @@ class Stack(object):
         if type(iterable) in [list, tuple, str]:
             self._container = LinkedList(iterable=iterable)
 
-        elif type(iterable) is NoneType:
+        elif type(iterable) is None:
             self._container = LinkedList()
 
         else:
@@ -36,7 +36,7 @@ class Stack(object):
         return self._container.length
 
 
-def main():
+def main(): # pragma: no cover
     """
     main function
     """
@@ -45,6 +45,6 @@ def main():
 
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
     main()
 
