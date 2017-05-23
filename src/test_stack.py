@@ -31,6 +31,12 @@ POP_TABLE = [
     ('this string will become a linked list', 36)
 ]
 
+POP_ERROR_TABLE = [
+    ([]),
+    (''),
+    (())
+]
+
 LEN_TABLE = [
     ('this is an iterable', 5, 10, 24),
     ([1, 2, 3, 4, 5, 6, 7], 7, 100, 100)
@@ -65,6 +71,14 @@ def test_pop(iterable, length):
     stack = Stack(iterable)
     stack.pop()
     assert len(stack) == length
+
+@pytest.mark.parametrize('non_iterable', POP_ERROR_TABLE)
+def test_pop_error(non_iterable):
+    """Test IndexError for Stack.pop()"""
+    from stack import Stack
+    with pytest.raises(IndexError):
+        Stack(non_iterable).pop()
+
 
 @pytest.mark.parametrize('iterable, num_of_pops, num_of_pushes, length', LEN_TABLE)
 def test_len(iterable, num_of_pops, num_of_pushes, length):
