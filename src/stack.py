@@ -10,7 +10,7 @@ class Stack(object):
         if type(iterable) in [list, tuple, str]:
             self._container = LinkedList(iterable=iterable)
 
-        elif type(iterable) is None:
+        elif iterable is None:
             self._container = LinkedList()
 
         else:
