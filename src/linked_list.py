@@ -116,7 +116,30 @@ def main(): # pragma: no cover
     """
     main function
     """
-    print('main function')
+
+    sll = LinkedList(values_list=[1, 2, 3, 4, 5, 6, 'potato', 'bananas'])
+
+    # Prints the linked list (test the print special method)
+    print('The linked list: \n', sll)
+
+    # Prints the length of the linked list
+    print('The lenght of list: \n', len(sll))
+
+    # Searches for value in linked list
+    print('Search Value \'bananas\': ', sll.search('bananas').val)
+
+    # Searches for non-existing value
+    print('Search Value \'burgers\': ', sll.search('burgers'))
+
+    # Removes node from linked list, returns True if item was removed, else False
+    print('Removed Value \'bananas\': ', sll.remove(sll.search('bananas')))
+
+    # Pops item off of linked list
+    print('Pop() value: ', sll.pop().val)
+
+    # Pushes new item onto the linked list
+    sll.push('green')
+    print('Push(\'green\'): list after pushing item ', sll)
 
 
 if __name__ == '__main__': # pragma: no cover

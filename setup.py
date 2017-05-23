@@ -18,7 +18,7 @@ setup(
     description="""A module that contains code
     samples for a number of classic data structures implemented in Python.""",
     version='0.1',
-    author='Elyanil Castro',
+    author='Elyanil Castro, Miguel Pena',
     author_email='yanil3500@gmail.com',
     license='MIT',
     package_dir={'': 'src'},
