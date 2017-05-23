@@ -19,11 +19,11 @@ class LinkedList:
     """
     head = None
     length = 0
-    def __init__(self,values_list=[]):
+    def __init__(self, iterable=None):
         """Initialize LinkedList."""
-        if len(values_list) > 0:
-            for i in range(len(values_list)):
-                self.push(values_list[i])
+        if type(iterable) in [list, tuple, str]:
+            for item in iterable:
+                self.push(item)
 
 
     def push(self, value):
