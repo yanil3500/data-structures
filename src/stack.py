@@ -10,12 +10,11 @@ class Stack(object):
         if type(iterable) in [list, tuple, str]:
             self._container = LinkedList(iterable=iterable)
 
-        elif type(iterable) is None:
+        elif iterable is None:
             self._container = LinkedList()
 
         else:
             raise TypeError('You need to use an iterable or no arguments.')
-
 
     def push(self, value):
         """
@@ -36,7 +35,7 @@ class Stack(object):
         return self._container.length
 
 
-def main(): # pragma: no cover
+def main():  # pragma: no cover
     """
     main function
     """
@@ -44,7 +43,6 @@ def main(): # pragma: no cover
     print(dir(a_stack))
 
 
-
-if __name__ == '__main__': # pragma: no cover
+if __name__ == '__main__':  # pragma: no cover
     main()
 
