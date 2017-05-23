@@ -117,7 +117,7 @@ def main(): # pragma: no cover
     main function
     """
 
-    sll = LinkedList(values_list=[1, 2, 3, 4, 5, 6, 'potato', 'bananas'])
+    sll = LinkedList([1, 2, 3, 4, 5, 6, 'potato', 'bananas'])
 
     # Prints the linked list (test the print special method)
     print('The linked list: \n', sll)
