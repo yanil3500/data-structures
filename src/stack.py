@@ -10,6 +10,13 @@ class Stack(object):
         if type(iterable) in [list, tuple, str]:
             self._container = LinkedList(iterable=iterable)
 
+        elif type(iterable) is NoneType:
+            self._container = LinkedList()
+
+        else:
+            raise TypeError('You need to use an iterable or no arguments.')
+
+
     def push(self, value):
         """
         uses the linked list as the underlying data structure
