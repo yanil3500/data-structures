@@ -30,8 +30,10 @@ class DoublyLinkedList:
 
         else:
             temp_node = Node(value)
+            self.head.previous = temp_node
             temp_node.next = self.head
             self.head = temp_node
+            self.head.previous = None
             self.length += 1
 
     def pop(self):
@@ -54,20 +56,29 @@ class DoublyLinkedList:
         if self.head != None:
             if self.head.value == value:
                 self.pop()
-                return
 
-            previous_node = self.head
-            current_node = self.head.next
+            else:
+                print(self.head)
+                previous_node = self.head
+                current_node = self.head.next
+                print(current_node.previous)
+                while current_node != None:
+                    if current_node.value == value:
+                        current_node.previous.next = current_node.next
+                        current_node.next.previous = current_node.previous
+                        current_node.next = None
+                        current_node.previous = None
+                        self.length -= 1
+                        return
 
-            while current_node != None:
-                if current_node.value == value:
-                    previous_node.next = previous_node.next.next
-                    previous_node.next.next.previous = previous_node
-                    current_node.next = None
-                    current_node.previous = None
+                    else:
+                        previous_node = current_node
+                        current_node = current_node.next
 
+                raise ValueError # If value is not present, it will raise an appropriate Python exception.
 
-
+        else:
+            pass # empty DoublyLinkedList
 
     def __len__(self):
         return self.length
@@ -89,8 +100,12 @@ class DoublyLinkedList:
 
 def main():
     doubly_linked_list = DoublyLinkedList()
+    doubly_linked_list.push(3)
+    doubly_linked_list.push(2)
     doubly_linked_list.push(1)
-    doubly_linked_list.pop()
+    print(doubly_linked_list.display())
+    doubly_linked_list.remove(3)
     print(len(doubly_linked_list))
+    print(doubly_linked_list.display())
 
 main()
