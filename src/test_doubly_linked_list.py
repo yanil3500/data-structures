@@ -77,7 +77,6 @@ PARAMETERS_LIST_FOR_SHIFT_ATTRIBUTE_ERROR = [
     ([1, 2, 4], 3),
     ([1, 2, 4, 5, 6], 5),
     ([1, 2, 4, 5, 9, 10, 11], 7),
-    ([], 0),
     (['A', 'B', 'C', 'potato'], 4)
 ]
 
@@ -248,4 +247,3 @@ def test_shift_raise_attribute_error(values, number_of_items_to_remove):
         counter += 1
     with pytest.raises(AttributeError):
         MOCK_DLL.shift()
-    helper_teardown(MOCK_DLL)
