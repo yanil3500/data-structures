@@ -67,12 +67,17 @@ class DoublyLinkedList:
                 print(current_node.previous)
                 while current_node != None:
                     if current_node.value == value:
-                        current_node.previous.next = current_node.next
-                        current_node.next.previous = current_node.previous
-                        current_node.next = None
-                        current_node.previous = None
-                        self.length -= 1
-                        return
+                        if current_node.value == self.tail.value:
+                            self.shift()
+                            return
+
+                        else:
+                            current_node.previous.next = current_node.next
+                            current_node.next.previous = current_node.previous
+                            current_node.next = None
+                            current_node.previous = None
+                            self.length -= 1
+                            return
 
                     else:
                         previous_node = current_node
