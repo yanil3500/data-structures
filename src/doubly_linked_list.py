@@ -80,8 +80,8 @@ def main():
     doubly_linked_list.pop()
     print(len(doubly_linked_list))
     doubly_linked_list.pop()
-    print(doubly_linked_list.display())
+    print(doubly_linked_list)
     doubly_linked_list.pop()
-    print(doubly_linked_list.display())
+    print(doubly_linked_list)
 
 main()
