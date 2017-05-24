@@ -51,6 +51,15 @@ PARAMETERS_LIST_FOR_REMOVE_INDEX_EXCEPTION = [
     (['MONEY', 'CASH', 'REMOVES'], 'ADDS')
 ]
 
+PARAMETERS_LIST_FOR_APPEND = [
+    (1, 1),
+    (100, 2),
+    (3, 3),
+    (5, 4),
+    (7, 5),
+    (6, 6)
+]
+
 MOCK_DLL = DoublyLinkedList()
 
 
@@ -111,6 +120,7 @@ def test_push(value, result):
     """
     MOCK_DLL.push(value)
     assert MOCK_DLL.length == result
+    
 
 
 @pytest.mark.parametrize('values, number_of_items_to_remove, result', PARAMETERS_LIST_FOR_POP)
@@ -128,6 +138,7 @@ def test_pop(values, number_of_items_to_remove, result):
         MOCK_DLL.pop()
         counter += 1
     assert MOCK_DLL.length == result
+    helper_teardown(MOCK_DLL)
 
 # def helper_build(a_list, *args):
 #     for value in args[0]:
@@ -153,6 +164,7 @@ def test_pop_raise_index_exception(values, number_of_items_to_remove):
         counter += 1
     with pytest.raises(IndexError):
         MOCK_DLL.pop()
+    helper_teardown(MOCK_DLL)
 
 
 @pytest.mark.parametrize('values, number_to_remove, result', PARAMETERS_LIST_FOR_REMOVE)
@@ -166,9 +178,11 @@ def test_remove(values, number_to_remove, result):
         MOCK_DLL.push(value)
     MOCK_DLL.remove(number_to_remove)
     assert MOCK_DLL.length == result
+    helper_teardown(MOCK_DLL)
+
 
 @pytest.mark.parametrize('values, number_to_remove', PARAMETERS_LIST_FOR_REMOVE_INDEX_EXCEPTION)
-def test_remove_index_exception(values, number_to_remove):
+def test_remove_raise_index_exception(values, number_to_remove):
     """
     tests to see remove function raises an index exception when given a value not in dll
     """
@@ -177,5 +191,14 @@ def test_remove_index_exception(values, number_to_remove):
         MOCK_DLL.push(value)
     with pytest.raises(IndexError):
         MOCK_DLL.remove(number_to_remove)
+    helper_teardown(MOCK_DLL)
 
 
+@pytest.mark.parametrize('value, result', PARAMETERS_LIST_FOR_APPEND)
+def test_append(value, result):
+    """
+    tests to see if values are added to dll by checking the dll length 
+    after append the values
+    """
+    MOCK_DLL.push(value)
+    assert MOCK_DLL.length == result
