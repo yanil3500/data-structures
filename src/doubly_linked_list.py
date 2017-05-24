@@ -138,16 +138,12 @@ class DoublyLinkedList:
 
             return linked_list_string
 
-        else:
-            return '()'
 
-
-def main():
+def main(): # pragma: no cover
     doubly_linked_list = DoublyLinkedList()
     doubly_linked_list.push(1)
     doubly_linked_list.shift()
     print(doubly_linked_list.display())
-    doubly_linked_list.shift()
 
 
-main()
+main() # pragma: no cover
