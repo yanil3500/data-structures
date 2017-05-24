@@ -90,7 +90,6 @@ def test_pop(values, number_of_items_to_remove, result):
     counter = 0
     while counter < number_of_items_to_remove:
         MOCK_DLL.pop()
-        i += 1
-
+        counter += 1
     assert MOCK_DLL.length == result
 
