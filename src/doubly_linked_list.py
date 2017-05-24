@@ -46,7 +46,7 @@ class DoublyLinkedList:
                 self.head.previous = None
 
             self.length -= 1
-            return temp_node
+            return temp_node.value
 
         else:
             raise IndexError('Does not contain anymore elements. Cannot remove non-existing elements.')
@@ -56,6 +56,9 @@ class DoublyLinkedList:
         if self.head != None:
             if self.head.value == value:
                 self.pop()
+
+            elif self.head == self.tail:
+                self.shift()
 
             else:
                 print(self.head)
@@ -75,10 +78,20 @@ class DoublyLinkedList:
                         previous_node = current_node
                         current_node = current_node.next
 
-                raise ValueError # If value is not present, it will raise an appropriate Python exception.
+                raise IndexError # If value is not present, it will raise an appropriate Python exception.
 
         else:
-            pass # empty DoublyLinkedList
+            raise IndexError # empty DoublyLinkedList
+
+    def shift(self):
+        if self.head == self.tail:
+            self.pop()
+
+        else:
+            self.tail.previous.next = None
+            self.tail.next = None
+            self.tail = self.tail.previous
+            self.length -= 1
 
     def __len__(self):
         return self.length
@@ -105,7 +118,6 @@ def main():
     doubly_linked_list.push(1)
     print(doubly_linked_list.display())
     doubly_linked_list.remove(3)
-    print(len(doubly_linked_list))
     print(doubly_linked_list.display())
 
 main()
