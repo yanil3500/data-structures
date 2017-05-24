@@ -143,11 +143,7 @@ class DoublyLinkedList:
 
 
 def main(): # pragma: no cover
-    doubly_linked_list = DoublyLinkedList()
-    doubly_linked_list.append(1)
-    doubly_linked_list.shift()
-    doubly_linked_list.shift()
-    print(doubly_linked_list.display())
+    pass
 
 
 main() # pragma: no cover
