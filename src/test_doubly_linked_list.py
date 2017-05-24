@@ -40,6 +40,17 @@ PARAMETERS_LIST_FOR_REMOVE = [
     (['MONEY', 'CASH', 'REMOVES'], 'REMOVES', 2)
 ]
 
+
+PARAMETERS_LIST_FOR_REMOVE_INDEX_EXCEPTION = [
+    ([1, 2, 5, 6, 8, 4], 190),
+    ([4, 5, 6, 3], 7),
+    (['A', 'B', 'C'], 5),
+    ([6, 7, 2, 1, 10, 2, 1000], 'potato'),
+    (['CASH', 'RULES', 'EVERYTHING', 'AROUND', 'ME'], 'NOTHING'),
+    ([1, 5, '&', '3', 'G'], 1000),
+    (['MONEY', 'CASH', 'REMOVES'], 'ADDS')
+]
+
 MOCK_DLL = DoublyLinkedList()
 
 
@@ -155,4 +166,16 @@ def test_remove(values, number_to_remove, result):
         MOCK_DLL.push(value)
     MOCK_DLL.remove(number_to_remove)
     assert MOCK_DLL.length == result
+
+@pytest.mark.parametrize('values, number_to_remove', PARAMETERS_LIST_FOR_REMOVE_INDEX_EXCEPTION)
+def test_remove_index_exception(values, number_to_remove):
+    """
+    tests to see remove function raises an index exception when given a value not in dll
+    """
+    helper_teardown(MOCK_DLL)
+    for value in values:
+        MOCK_DLL.push(value)
+    with pytest.raises(IndexError):
+        MOCK_DLL.remove(number_to_remove)
+
 
