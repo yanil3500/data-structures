@@ -36,7 +36,7 @@ PARAMETERS_LIST_FOR_REMOVE = [
     (['A', 'B', 'C'], 'A', 2),
     ([6, 7, 2, 1, 10, 2, 1000], 1, 6),
     (['CASH', 'RULES', 'EVERYTHING', 'AROUND', 'ME'], 'EVERYTHING', 4),
-    ([1, 5, '&', '3',G], 1, 3),
+    ([1, 5, '&', '3', 'G'], 1, 3),
     (['MONEY', 'CASH', 'REMOVES'], 'REMOVES', 2)
 ]
 
@@ -49,6 +49,9 @@ def helper_teardown(a_list):
     """
     a_list.head = a_list.tail = None
     a_list.length = 0
+
+
+
 
 # @pytest.fixture()
 # def test_empty_dll():
@@ -115,6 +118,15 @@ def test_pop(values, number_of_items_to_remove, result):
         counter += 1
     assert MOCK_DLL.length == result
 
+# def helper_build(a_list, *args):
+#     for value in args[0]:
+#         a_list.push(value)
+#     if count in args:
+#         count = args[1]
+#         number_of_items = args[2]
+#         while count < number_of_items:
+#             a_list.args[3]()
+
 
 @pytest.mark.parametrize('values, number_of_items_to_remove', PARAMETERS_LIST_FOR_POP_EXCEPTION)
 def test_pop_raise_index_exception(values, number_of_items_to_remove):
@@ -132,10 +144,15 @@ def test_pop_raise_index_exception(values, number_of_items_to_remove):
         MOCK_DLL.pop()
 
 
-@pytest.mark.parametrize('values, result')
-def test_remove(values):
+@pytest.mark.parametrize('values, number_to_remove, result', PARAMETERS_LIST_FOR_REMOVE)
+def test_remove(values, number_to_remove, result):
     """
     tests to see if the method removes
     the first instance of the given value if the value is found
     """
     helper_teardown(MOCK_DLL)
+    for value in values:
+        MOCK_DLL.push(value)
+    MOCK_DLL.remove(number_to_remove)
+    assert MOCK_DLL.length == result
+
