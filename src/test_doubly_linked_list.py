@@ -3,6 +3,7 @@ Tests for doubly linked list
 """
 import pytest
 from doubly_linked_list import DoublyLinkedList
+
 PARAMETERS_LIST_FOR_PUSH = [
     (1, 1),
     (100, 2),
