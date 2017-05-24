@@ -36,7 +36,7 @@ PARAMETERS_LIST_FOR_REMOVE = [
     (['A', 'B', 'C'], 'A', 2),
     ([6, 7, 2, 1, 10, 2, 1000], 1, 6),
     (['CASH', 'RULES', 'EVERYTHING', 'AROUND', 'ME'], 'EVERYTHING', 4),
-    ([1, 5, '&', '3', 'G'], 1, 3),
+    ([1, 5, '&', '3', 'G'], 1, 4),
     (['MONEY', 'CASH', 'REMOVES'], 'REMOVES', 2)
 ]
 
