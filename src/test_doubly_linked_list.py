@@ -60,6 +60,26 @@ PARAMETERS_LIST_FOR_APPEND = [
     (6, 6)
 ]
 
+PARAMETERS_LIST_FOR_SHIFT = [
+    ([2, 3, 5, 6], 2, 2),
+    ([4], 1, 0),
+    ([10, 11, 23, 45, 6, 7, 8, 9, 10], 3, 6),
+    ([10, 12, 13, 45, 6, 7, 8, 9], 8, 0),
+    (['a', 'b', 'l', 'e', 'a', 'k', 'r'], 2, 5),
+    (['A', 'B', 'C', 'E', 'F', 'Q'], 3, 3),
+    (['A', 'B', 1, 2], 1, 3)
+]
+
+PARAMETERS_LIST_FOR_SHIFT_ATTRIBUTE_ERROR = [
+    ([1, 2, 4, 5], 4),
+    ([1], 1),
+    ([1, 2, 4], 3),
+    ([1, 2, 4, 5, 6], 5),
+    ([1, 2, 4, 5, 9, 10, 11], 7),
+    ([], 0),
+    (['A', 'B', 'C', 'potato'], 4)
+]
+
 MOCK_DLL = DoublyLinkedList()
 
 
@@ -120,7 +140,6 @@ def test_push(value, result):
     """
     MOCK_DLL.push(value)
     assert MOCK_DLL.length == result
-    
 
 
 @pytest.mark.parametrize('values, number_of_items_to_remove, result', PARAMETERS_LIST_FOR_POP)
@@ -200,5 +219,31 @@ def test_append(value, result):
     tests to see if values are added to dll by checking the dll length 
     after append the values
     """
-    MOCK_DLL.push(value)
+    MOCK_DLL.append(value)
     assert MOCK_DLL.length == result
+
+
+@pytest.mark.parametrize('values, number_of_items_to_remove, result', PARAMETERS_LIST_FOR_SHIFT)
+def test_shift(values, number_of_items_to_remove, result):
+    helper_teardown(MOCK_DLL)
+    for value in values:
+        MOCK_DLL.append(value)
+    counter = 0
+    while counter < number_of_items_to_remove:
+        MOCK_DLL.shift()
+        counter += 1
+    assert MOCK_DLL.length == result
+    helper_teardown(MOCK_DLL)
+
+
+@pytest.mark.parametrize('values, number_of_items_to_remove', PARAMETERS_LIST_FOR_SHIFT_ATTRIBUTE_ERROR)
+def test_shift_raise_attribute_error(values, number_of_items_to_remove):
+    helper_teardown(MOCK_DLL)
+    for value in values:
+        MOCK_DLL.append(value)
+    counter = 0
+    while counter < number_of_items_to_remove:
+        MOCK_DLL.shift()
+        counter += 1
+    with pytest.raises(AttributeError):
+        MOCK_DLL.shift()
