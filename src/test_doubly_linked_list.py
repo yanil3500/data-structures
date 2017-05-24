@@ -30,6 +30,16 @@ PARAMETERS_LIST_FOR_POP_EXCEPTION = [
     ([], 0),
 ]
 
+PARAMETERS_LIST_FOR_REMOVE = [
+    ([1, 2, 5, 6, 8, 4], 8, 5),
+    ([4, 5, 6, 3], 5, 3),
+    (['A', 'B', 'C'], 'A', 2),
+    ([6, 7, 2, 1, 10, 2, 1000], 1, 6),
+    (['CASH', 'RULES', 'EVERYTHING', 'AROUND', 'ME'], 'EVERYTHING', 4),
+    ([1, 5, '&', '3',G], 1, 3),
+    (['MONEY', 'CASH', 'REMOVES'], 'REMOVES', 2)
+]
+
 MOCK_DLL = DoublyLinkedList()
 
 
@@ -120,3 +130,12 @@ def test_pop_raise_index_exception(values, number_of_items_to_remove):
         counter += 1
     with pytest.raises(IndexError):
         MOCK_DLL.pop()
+
+
+@pytest.mark.parametrize('values, result')
+def test_remove(values):
+    """
+    tests to see if the method removes
+    the first instance of the given value if the value is found
+    """
+    helper_teardown(MOCK_DLL)
