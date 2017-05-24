@@ -54,8 +54,8 @@ class DoublyLinkedList:
         if self.head != None:
             if self.head.value == value:
                 self.pop()
-                return
 
+        else:
             previous_node = self.head
             current_node = self.head.next
 
@@ -65,6 +65,9 @@ class DoublyLinkedList:
                     previous_node.next.next.previous = previous_node
                     current_node.next = None
                     current_node.previous = None
+
+                previous_node = current_node
+                current_node = current_node.next
 
 
 
