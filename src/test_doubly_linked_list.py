@@ -248,3 +248,4 @@ def test_shift_raise_attribute_error(values, number_of_items_to_remove):
         counter += 1
     with pytest.raises(AttributeError):
         MOCK_DLL.shift()
+    helper_teardown(MOCK_DLL)
