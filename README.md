@@ -12,3 +12,7 @@ The sample code contained herein will hold a number of classic data structures i
 **Stack**
 - **Implementation**: `stack.py`
 - **Tests**: `test_stack.py`
+
+**Doubly Linked List**
+- **Implementation**: `doubly_linked_list.py`
+- **Tests**: `test_doubly.linked_list.py`
