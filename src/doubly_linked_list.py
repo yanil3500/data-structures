@@ -39,14 +39,32 @@ class DoublyLinkedList:
         if self.length > 0:
             temp_node = self.head
             self.head = self.head.next
-            self.head.previous = None
+
+            if self.head != None:
+                self.head.previous = None
+
             self.length -= 1
             return temp_node
+
         else:
             raise IndexError('Does not contain anymore elements. Cannot remove non-existing elements.')
 
     def __len__(self):
         return self.length
+
+    def __str__(self):
+        """Return a unicode string representation of LinkedList."""
+        if self.length > 0:
+            linked_list_string = '('
+            temp_node = self.head
+            while temp_node != None:
+                linked_list_string += '{},'.format(temp_node.value)
+                temp_node = temp_node.next
+
+            linked_list_string = linked_list_string[:-1]
+            linked_list_string += ')'
+
+            return linked_list_string
 
 
 def main():
@@ -54,7 +72,16 @@ def main():
     doubly_linked_list.push(1)
     doubly_linked_list.push(2)
     doubly_linked_list.push(3)
+    doubly_linked_list.push(4)
+    doubly_linked_list.push(5)
+    doubly_linked_list.pop()
+    doubly_linked_list.pop()
+    doubly_linked_list.pop()
     doubly_linked_list.pop()
     print(len(doubly_linked_list))
+    doubly_linked_list.pop()
+    print(doubly_linked_list.display())
+    doubly_linked_list.pop()
+    print(doubly_linked_list.display())
 
 main()
