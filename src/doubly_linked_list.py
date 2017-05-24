@@ -144,10 +144,10 @@ class DoublyLinkedList:
 
 def main():
     doubly_linked_list = DoublyLinkedList()
+    doubly_linked_list.push(1)
     doubly_linked_list.shift()
-    doubly_linked_list.append(4)
+    print(doubly_linked_list.display())
     doubly_linked_list.shift()
-    doubly_linked_list.remove(1)
 
 
 main()
