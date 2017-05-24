@@ -51,5 +51,10 @@ class DoublyLinkedList:
 
 def main():
     doubly_linked_list = DoublyLinkedList()
+    doubly_linked_list.push(1)
+    doubly_linked_list.push(2)
+    doubly_linked_list.push(3)
+    doubly_linked_list.pop()
+    print(len(doubly_linked_list))
 
 main()
