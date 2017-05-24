@@ -23,6 +23,7 @@ class DoublyLinkedList:
         self.length = 0
 
     def push(self, value):
+        """Push a value to doubly linked list."""
         if self.head == None:
             self.head = Node(value)
             self.tail = self.head
@@ -38,6 +39,7 @@ class DoublyLinkedList:
 
 
     def append(self, value):
+        """Append a value to end of doubly linked list."""
         if self.head == None:
             self.head = Node(value)
             self.tail = self.head
@@ -69,6 +71,7 @@ class DoublyLinkedList:
             raise IndexError('Does not contain anymore elements. Cannot remove non-existing elements.')
 
     def shift(self):
+        """Shift last value from doubly linked list"""
         if self.head != None:
             if self.head == self.tail:
                 self.pop()
