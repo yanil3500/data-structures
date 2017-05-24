@@ -69,14 +69,18 @@ class DoublyLinkedList:
             raise IndexError('Does not contain anymore elements. Cannot remove non-existing elements.')
 
     def shift(self):
-        if self.head == self.tail:
-            self.pop()
+        if self.head != None:
+            if self.head == self.tail:
+                self.pop()
+
+            else:
+                self.tail.previous.next = None
+                self.tail.next = None
+                self.tail = self.tail.previous
+                self.length -= 1
 
         else:
-            self.tail.previous.next = None
-            self.tail.next = None
-            self.tail = self.tail.previous
-            self.length -= 1
+            raise AttributeError
 
     def remove(self, value):
         """Remove a node from DoublyLinkedList and return True."""
@@ -134,14 +138,16 @@ class DoublyLinkedList:
 
             return linked_list_string
 
+        else:
+            return '()'
+
 
 def main():
     doubly_linked_list = DoublyLinkedList()
-    doubly_linked_list.push(3)
-    doubly_linked_list.push(2)
-    doubly_linked_list.push(1)
-    print(doubly_linked_list.display())
+    doubly_linked_list.shift()
     doubly_linked_list.append(4)
-    print(doubly_linked_list.display())
+    doubly_linked_list.shift()
+    doubly_linked_list.remove(1)
+
 
 main()
