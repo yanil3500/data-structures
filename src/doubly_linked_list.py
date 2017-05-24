@@ -52,7 +52,7 @@ class DoublyLinkedList:
     def __len__(self):
         return self.length
 
-    def __str__(self):
+    def display(self):
         """Return a unicode string representation of LinkedList."""
         if self.length > 0:
             linked_list_string = '('
@@ -80,8 +80,8 @@ def main():
     doubly_linked_list.pop()
     print(len(doubly_linked_list))
     doubly_linked_list.pop()
-    print(doubly_linked_list)
+    print(doubly_linked_list.display())
     doubly_linked_list.pop()
-    print(doubly_linked_list)
+    print(doubly_linked_list.display())
 
 main()
