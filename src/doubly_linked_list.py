@@ -36,6 +36,23 @@ class DoublyLinkedList:
             self.head.previous = None
             self.length += 1
 
+
+    def append(self, value):
+        if self.head == None:
+            self.head = Node(value)
+            self.tail = self.head
+            self.length += 1
+
+        else:
+            new_node = Node(value)
+            new_node.previous = self.tail
+            new_node.next = None
+            self.tail.next = new_node
+            new_node = self.tail
+            self.length += 1
+
+
+
     def pop(self):
         """Pop value from front of DoublyLinkedList."""
         if self.length > 0:
@@ -50,6 +67,16 @@ class DoublyLinkedList:
 
         else:
             raise IndexError('Does not contain anymore elements. Cannot remove non-existing elements.')
+
+    def shift(self):
+        if self.head == self.tail:
+            self.pop()
+
+        else:
+            self.tail.previous.next = None
+            self.tail.next = None
+            self.tail = self.tail.previous
+            self.length -= 1
 
     def remove(self, value):
         """Remove a node from DoublyLinkedList and return True."""
@@ -67,12 +94,17 @@ class DoublyLinkedList:
                 print(current_node.previous)
                 while current_node != None:
                     if current_node.value == value:
-                        current_node.previous.next = current_node.next
-                        current_node.next.previous = current_node.previous
-                        current_node.next = None
-                        current_node.previous = None
-                        self.length -= 1
-                        return
+                        if current_node.value == self.tail.value:
+                            self.shift()
+                            return
+
+                        else:
+                            current_node.previous.next = current_node.next
+                            current_node.next.previous = current_node.previous
+                            current_node.next = None
+                            current_node.previous = None
+                            self.length -= 1
+                            return
 
                     else:
                         previous_node = current_node
@@ -83,18 +115,10 @@ class DoublyLinkedList:
         else:
             raise IndexError # empty DoublyLinkedList
 
-    def shift(self):
-        if self.head == self.tail:
-            self.pop()
-
-        else:
-            self.tail.previous.next = None
-            self.tail.next = None
-            self.tail = self.tail.previous
-            self.length -= 1
 
     def __len__(self):
         return self.length
+
 
     def display(self):
         """Return a unicode string representation of LinkedList."""
@@ -117,7 +141,7 @@ def main():
     doubly_linked_list.push(2)
     doubly_linked_list.push(1)
     print(doubly_linked_list.display())
-    doubly_linked_list.remove(3)
+    doubly_linked_list.append(4)
     print(doubly_linked_list.display())
 
 main()
