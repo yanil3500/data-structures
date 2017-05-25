@@ -37,22 +37,19 @@ class DoublyLinkedList:
             self.head.previous = None
             self.length += 1
 
-
     def append(self, value):
-        """Append a value to end of doubly linked list."""
-        if self.head == None:
-            self.head = Node(value)
-            self.tail = self.head
-            self.length += 1
+        """
+        adds values to end of the list
+        """
+        if self.head is not None:
+            new_node = Node(value)
+            new_node.previous = self.tail
+            self.tail.next = new_node
 
         else:
             new_node = Node(value)
-            new_node.previous = self.tail
-            new_node.next = None
-            self.tail.next = new_node
-            self.tail = new_node
-            self.length += 1
-
+            new_node = self.head
+            new_node = self.tail
 
 
     def pop(self):
@@ -67,25 +64,29 @@ class DoublyLinkedList:
                 return temp_node.value
 
         except IndexError:
-            pass
+            print('IndexError')
+            return
         except AttributeError:
-            pass
+            print('AttributeError:')
+            return
 
     def shift(self):
-        """Shift last value from doubly linked list"""
+        """
+        removes the last value from the list
+        """
         try:
-            if self.head != None:
-                if self.head == self.tail:
-                    self.pop()
-
-                else:
-                    self.tail.previous.next = None
-                    self.tail.next = None
-                    self.tail = self.tail.previous
-                    self.length -= 1
+            if self.length > 0:
+                removed = self.tail
+                removed.next = None
+                self.tail = self.tail.previous
+                removed.previous = None
+                self.tail.next = None
+                self.length -= 1
+                return removed.value
 
         except AttributeError:
-            pass
+            print("""Does not contain anymore elements.
+            Cannot remove non-existing elements.""")
 
     def remove(self, value):
         """Remove a node from DoublyLinkedList and return True."""
@@ -145,7 +146,9 @@ class DoublyLinkedList:
 
 
 def main(): # pragma: no cover
-    pass
+    doubly_linked_list = DoublyLinkedList()
+    doubly_linked_list.append(1)
+    doubly_linked_list.shift()
 
 
 main() # pragma: no cover
