@@ -4,7 +4,7 @@ setup for data-structures
 from setuptools import setup
 
 DEPENDENCIES = ['pytest', 'pytest-cov', 'ipython']
-MODULES = ['linked_list', 'stack']
+MODULES = ['linked_list', 'stack', 'doubly_linked_list']
 EXTRA_PACKAGES = {
     'test': ['tox']
 }
