@@ -80,6 +80,15 @@ PARAMETERS_LIST_FOR_SHIFT_ATTRIBUTE_ERROR = [
     (['A', 'B', 'C', 'potato'], 4)
 ]
 
+PARAMETERS_LIST_FOR_LEN = [
+    ([1, 2, 4, 5], 4),
+    ([1], 1),
+    ([1, 2, 4], 3),
+    ([1, 2, 4, 5, 6], 5),
+    ([1, 2, 4, 5, 9, 10, 11], 7),
+    (['A', 'B', 'C', 'potato'], 4)
+]
+
 MOCK_DLL = DoublyLinkedList()
 
 
@@ -208,7 +217,7 @@ def test_remove_raise_index_exception(values, number_to_remove):
     helper_teardown(MOCK_DLL)
     for value in values:
         MOCK_DLL.push(value)
-    with pytest.raises(IndexError):
+    with pytest.raises(LookupError):
         MOCK_DLL.remove(number_to_remove)
     helper_teardown(MOCK_DLL)
 
@@ -225,6 +234,9 @@ def test_append(value, result):
 
 @pytest.mark.parametrize('values, number_of_items_to_remove, result', PARAMETERS_LIST_FOR_SHIFT)
 def test_shift(values, number_of_items_to_remove, result):
+    """
+    tests the shift methods (removal from end)
+    """
     helper_teardown(MOCK_DLL)
     for value in values:
         MOCK_DLL.append(value)
@@ -238,6 +250,9 @@ def test_shift(values, number_of_items_to_remove, result):
 
 @pytest.mark.parametrize('values, number_of_items_to_remove', PARAMETERS_LIST_FOR_SHIFT_ATTRIBUTE_ERROR)
 def test_shift_raise_attribute_error(values, number_of_items_to_remove):
+    """
+    tests to check if shift raises an exception trying remove value from an empty dll
+    """
     helper_teardown(MOCK_DLL)
     for value in values:
         MOCK_DLL.append(value)
@@ -245,5 +260,17 @@ def test_shift_raise_attribute_error(values, number_of_items_to_remove):
     while counter < number_of_items_to_remove:
         MOCK_DLL.shift()
         counter += 1
-    with pytest.raises(AttributeError):
+    with pytest.raises(IndexError):
         MOCK_DLL.shift()
+        helper_teardown(MOCK_DLL)
+
+
+@pytest.mark.parametrize('values, expected_list_length', PARAMETERS_LIST_FOR_LEN)
+def test_len(values, expected_list_length):
+    """
+    tests to check if len returns the expected dll list length
+    """
+    helper_teardown(MOCK_DLL)
+    for value in values:
+        MOCK_DLL.append(value)
+    assert MOCK_DLL.length == expected_list_length

@@ -1,154 +1,120 @@
-"""
-A doubly-linked list implementation
-"""
-
-
 class Node:
     """
-    supporting class for linked list
+    node class
     """
     def __init__(self, value):
-        """Initialize a Node with a given value"""
+        """
+        node initializer
+        """
+        self.prev = None
         self.value = value
         self.next = None
-        self.previous = None
+
 
 class DoublyLinkedList:
-    """DoublyLinkedList"""
-
+    """
+    doubly linked list class
+    """
     def __init__(self):
-        """DoublyLinkedList"""
+        """
+        DoublyLinkedList initializer
+        """
         self.head = None
         self.tail = None
         self.length = 0
 
     def push(self, value):
-        """Push a value to doubly linked list."""
-        if self.head == None:
-            self.head = Node(value)
-            self.tail = self.head
+        """
+        adds value to beginning of the list
+        """
+        if self.head is None:
+            self.length += 1
+            self.head = self.tail = Node(value)
+        else:
+            self.head.prev = Node(value)
+            self.head.prev.next = self.head
+            self.head = self.head.prev
             self.length += 1
 
-        else:
-            temp_node = Node(value)
-            self.head.previous = temp_node
-            temp_node.next = self.head
-            self.head = temp_node
-            self.head.previous = None
-            self.length += 1
+    def pop(self):
+        """
+        removes the first value off the list and returns it
+        """
+        try:
+            if self.head is self.tail:
+                removed = self.head
+                self.head = self.tail = None
+                self.length -= 1
+                return removed.value
+            removed = self.head
+            removed.prev = None
+            self.head = self.head.next
+            removed.next = None
+            self.length -= 1
+            return removed.value
+        except:
+            raise IndexError("""Does not contain anymore elements.
+                Cannot remove non-existing elements.""")
 
     def append(self, value):
         """
         adds values to end of the list
         """
-        if self.head is not None:
-            new_node = Node(value)
-            new_node.previous = self.tail
-            self.tail.next = new_node
-
+        if self.head is None:
+            self.head = self.tail = Node(value)
+            self.length += 1
         else:
-            new_node = Node(value)
-            new_node = self.head
-            new_node = self.tail
+            new_item = Node(value)
+            new_item.prev = self.tail
+            self.tail.next = new_item
+            self.tail = new_item
+            self.length += 1
 
-
-    def pop(self):
-        """Pop value from front of DoublyLinkedList."""
-        try:
-            if self.length > 0:
-                temp_node = self.head
-                self.head = self.head.next
-                self.head.previous = None
-                temp_node.next = None
-                self.length -= 1
-                return temp_node.value
-
-        except IndexError:
-            print('IndexError')
-            return
-        except AttributeError:
-            print('AttributeError:')
-            return
+    def __len__(self):
+        """
+        returns the length of the linked list
+        """
+        return self.length
 
     def shift(self):
         """
         removes the last value from the list
         """
         try:
-            if self.length > 0:
-                removed = self.tail
-                removed.next = None
-                self.tail = self.tail.previous
-                removed.previous = None
-                self.tail.next = None
+            if self.tail is self.head:
+                removed = self.head
+                self.head = self.tail = None
                 self.length -= 1
                 return removed.value
+            removed = self.tail
+            self.tail = self.tail.prev
+            removed.prev = None
+            self.tail.next = None
+            self.length -= 1
+            return removed.value
+        except:
+            raise IndexError("""Does not contain anymore elements.
+                Cannot remove non-existing elements.""")
 
-        except AttributeError:
-            print("""Does not contain anymore elements.
-            Cannot remove non-existing elements.""")
-
-    def remove(self, value):
-        """Remove a node from DoublyLinkedList and return True."""
-        if self.head != None:
-            if self.head.value == value:
-                self.pop()
-
-            elif self.head == self.tail:
-                self.shift()
-
-            else:
-                print(self.head)
-                previous_node = self.head
-                current_node = self.head.next
-                print(current_node.previous)
-                while current_node != None:
-                    if current_node.value == value:
-                        if current_node.value == self.tail.value:
-                            self.shift()
-                            return
-
-                        else:
-                            current_node.previous.next = current_node.next
-                            current_node.next.previous = current_node.previous
-                            current_node.next = None
-                            current_node.previous = None
-                            self.length -= 1
-                            return
-
-                    else:
-                        previous_node = current_node
-                        current_node = current_node.next
-
-                raise IndexError # If value is not present, it will raise an appropriate Python exception.
-
+    def remove(self, val):
+        """
+        searches for given value then removes it
+        """
+        if self.head is None:
+            return None
+        elif self.head.value == val:
+            return self.pop()
+        elif self.tail.value == val:
+            return self.shift()
         else:
-            raise IndexError # empty DoublyLinkedList
-
-
-    def __len__(self):
-        return self.length
-
-
-    def display(self):
-        """Return a unicode string representation of LinkedList."""
-        if self.length > 0:
-            linked_list_string = '('
-            temp_node = self.head
-            while temp_node != None:
-                linked_list_string += '{},'.format(temp_node.value)
-                temp_node = temp_node.next
-
-            linked_list_string = linked_list_string[:-1]
-            linked_list_string += ')'
-
-            return linked_list_string
-
-
-def main(): # pragma: no cover
-    doubly_linked_list = DoublyLinkedList()
-    doubly_linked_list.append(1)
-    doubly_linked_list.shift()
-
-
-main() # pragma: no cover
+            current = self.head
+            while current.next is not None:
+                current = current.next
+                if current.value == val:
+                    current.prev.next = current.next
+                    current.next.prev = current.prev
+                    current.prev = current.next = None
+                    self.length -= 1
+                    return current.value
+            else:
+                raise LookupError("""Value not found.""")
