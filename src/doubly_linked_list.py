@@ -57,18 +57,22 @@ class DoublyLinkedList:
 
     def pop(self):
         """Pop value from front of DoublyLinkedList."""
-        if self.length > 0:
-            temp_node = self.head
-            self.head = self.head.next
+        try:
+            if self.length > 0:
+                temp_node = self.head
+                self.head = self.head.next
 
-            if self.head != None:
-                self.head.previous = None
+                if self.head != None:
+                    self.head.previous = None
 
-            self.length -= 1
-            return temp_node.value
+                self.length -= 1
+                return temp_node.value
 
-        else:
+        except IndexError:
             raise IndexError('Does not contain anymore elements. Cannot remove non-existing elements.')
+
+        except AttributeError:
+            raise AttributeError
 
     def shift(self):
         """Shift last value from doubly linked list"""
@@ -83,7 +87,7 @@ class DoublyLinkedList:
                     self.tail = self.tail.previous
                     self.length -= 1
 
-        except:
+        except AttributeError:
             raise AttributeError
 
     def remove(self, value):
