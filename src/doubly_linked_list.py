@@ -72,17 +72,18 @@ class DoublyLinkedList:
 
     def shift(self):
         """Shift last value from doubly linked list"""
-        if self.head != None:
-            if self.head == self.tail:
-                self.pop()
+        try:
+            if self.head != None:
+                if self.head == self.tail:
+                    self.pop()
 
-            else:
-                self.tail.previous.next = None
-                self.tail.next = None
-                self.tail = self.tail.previous
-                self.length -= 1
+                else:
+                    self.tail.previous.next = None
+                    self.tail.next = None
+                    self.tail = self.tail.previous
+                    self.length -= 1
 
-        else:
+        except:
             raise AttributeError
 
     def remove(self, value):
