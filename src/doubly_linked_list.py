@@ -67,10 +67,9 @@ class DoublyLinkedList:
                 return temp_node.value
 
         except IndexError:
-            raise IndexError('Does not contain anymore elements. Cannot remove non-existing elements.')
-
+            pass
         except AttributeError:
-            raise AttributeError
+            pass
 
     def shift(self):
         """Shift last value from doubly linked list"""
@@ -86,7 +85,7 @@ class DoublyLinkedList:
                     self.length -= 1
 
         except AttributeError:
-            raise AttributeError
+            pass
 
     def remove(self, value):
         """Remove a node from DoublyLinkedList and return True."""
