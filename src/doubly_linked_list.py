@@ -50,7 +50,7 @@ class DoublyLinkedList:
             new_node.previous = self.tail
             new_node.next = None
             self.tail.next = new_node
-            new_node = self.tail
+            self.tail = new_node
             self.length += 1
 
 
