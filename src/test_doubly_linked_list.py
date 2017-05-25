@@ -242,8 +242,10 @@ def test_shift_raise_attribute_error(values, number_of_items_to_remove):
     for value in values:
         MOCK_DLL.append(value)
     counter = 0
+    import pdb; pdb.set_trace()
     while counter < number_of_items_to_remove:
         MOCK_DLL.shift()
         counter += 1
+    import pdb; pdb.set_trace()
     with pytest.raises(AttributeError):
         MOCK_DLL.shift()
