@@ -78,7 +78,7 @@ class Queue:
         else:
             raise IndexError("Cannot remove elements from empty queue.")
 
-    def __str__(self):
+    def __str__(self): # pragma: no cover
         """
         generates a string representing the queue
         """
@@ -109,7 +109,7 @@ class Queue:
         else:
             return self._front.value
 
-    def __len__(self):
+    def __len__(self): # pragma: no cover
         """
         return the number of elements in queue
         """
@@ -123,5 +123,5 @@ class Queue:
             self.dequeue()
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()
