@@ -9,8 +9,12 @@ def main():
     """
     a_queue = Queue()
 
+    # add elements to queu
     for value in 'cash-rules-everthing-around-me':
         a_queue.enqueue(value)
+
+
+
 
 
 class Node:
@@ -62,11 +66,40 @@ class Queue:
                     return new_item.value
         except:
             raise IndexError("Cannot remove elements from empty queue.")
-        
-    def __str__(self):
-        a_string = ''
-        current = self._front
 
+    def __str__(self):
+        """
+        generates a string representing the queue
+        """
+        a_string = '[front]'
+        current = self._front
+        while current.next is not None:
+            a_string += '->[{}]'.format(current.value)
+            current = current.next
+        a_string += '[{}]->'.format(current.value)
+        a_string += '[rear]'
+        return a_string
+
+    def size(self):
+        """
+        returns the size of the list
+        """
+        return self._length
+
+    def peek(self):
+        """
+        returns the next value in queue; returns None
+        """
+        if not self._front:
+            return None
+        else:
+            return self._front.value
+
+    def __len__(self):
+        """
+        return the number of elements in queue
+        """
+        return self.size()
 
 if __name__ == "__main__":
     main()
