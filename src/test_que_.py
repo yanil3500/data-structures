@@ -93,3 +93,11 @@ def test_size(que_with_values):
     Assert queue size is valid.
     que_with_values is (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
     """
+    assert que_with_values.size() == 10 and que_with_values._length == 10
+
+
+def test_size_empty_queue(empty_que):
+    """
+    Assert size return 0 for empty queue. 
+    """
+    assert empty_que.size() == 0 and empty_que._length == 0
