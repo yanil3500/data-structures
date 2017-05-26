@@ -24,7 +24,7 @@ def main():  # pragma: no cover
     print(wutang)
     print('peek(): {}'.format(a_queue.peek()))
     print('size(): {}'.format(a_queue.size()))
-    # a_queue.dequeue()
+    a_queue.dequeue()
 
 
 class Node:  # pragma: no cover
@@ -60,21 +60,18 @@ class Queue:
         """
         removes the elements in the order in which they were added
         """
-        try:
-            if self._front is self._rear and self._front is not None:
-                removed_item = self._front
-                self._front = self._rear = None
-                removed_item.next = None
-                self._length -= 1
-                return removed_item.value
-            if self._length > 0:
-                removed_item = self._front
-                self._front = self._front.next
-                removed_item.next = None
-                self._length -= 1
-                return removed_item.value
-        except IndexError:
-            raise IndexError("Cannot remove elements from empty queue.")
+        if self._front is self._rear and self._front is not None:
+            removed_item = self._front
+            self._front = self._rear = None
+            removed_item.next = None
+            self._length -= 1
+            return removed_item.value
+        if self._length > 0:
+            removed_item = self._front
+            self._front = self._front.next
+            removed_item.next = None
+            self._length -= 1
+            return removed_item.value
         else:
             raise IndexError("Cannot remove elements from empty queue.")
 
