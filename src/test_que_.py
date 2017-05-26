@@ -33,7 +33,6 @@ def que_with_values():
 
     return q
 
-
 def test_init(empty_que):
     """Asssert if init function is valid."""
     assert empty_que._length == 0 and empty_que._front is None and empty_que._rear is None
@@ -64,3 +63,33 @@ def test_dequeue(que_with_values):
 
 def test_dequeue_empty_queue(empty_que):
     """Assert if dequeue raises appropriate exception when trying to dequeue an empty queue."""
+    from que_ import Queue
+    from que_ import Node
+    with pytest.raises(IndexError):
+        empty_que.dequeue()
+
+
+def test_peek_queue(que_with_values):
+    """
+    Assert if peek value is valid.
+    que_with_values is (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+    """
+    from que_ import Queue
+    from que_ import Node
+    assert que_with_values.peek() == 1
+
+
+def test_peek_empty_queue(empty_que):
+    """
+    Assert if peek returns None if peek on empty queue.
+    """
+    from que_ import Queue
+    from que_ import Node
+    assert empty_que.peek() is None
+
+
+def test_size(que_with_values):
+    """
+    Assert queue size is valid.
+    que_with_values is (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+    """
