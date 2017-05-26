@@ -14,13 +14,17 @@ def main():
         a_queue.enqueue(value)
 
     print(a_queue)
+    print('peek(): {}'.format(a_queue.peek()))
     wutang = ''
     while a_queue.size() > 0:
         val = a_queue.dequeue()
         wutang += val
 
+    print('peek(): {}'.format(a_queue.peek()))
     print(wutang)
     print(a_queue)
+    a_queue.dequeue()
+
 
 
 class Node:
@@ -57,20 +61,21 @@ class Queue:
         removes the elements in the order in which they were added
         """
         try:
+            if self._front is self._rear and self._front is not None:
+                removed_item = self._front
+                self._front = self._rear = None
+                removed_item.next = None
+                self._length -= 1
+                return removed_item.value
             if self._length > 0:
-                if self._front is self._rear:
-                    removed_item = self._front
-                    self._front = self._rear = None
-                    removed_item.next = None
-                    self._length -= 1
-                    return removed_item.value
-                else:
-                    removed_item = self._front
-                    self._front = self._front.next
-                    removed_item.next = None
-                    self._length -= 1
-                    return removed_item.value
-        except:
+                removed_item = self._front
+                self._front = self._front.next
+                removed_item.next = None
+                self._length -= 1
+                return removed_item.value
+        except IndexError:
+            raise IndexError("Cannot remove elements from empty queue.")
+        else:
             raise IndexError("Cannot remove elements from empty queue.")
 
     def __str__(self):
