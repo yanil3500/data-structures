@@ -13,9 +13,14 @@ def main():
     for value in 'cash-rules-everthing-around-me':
         a_queue.enqueue(value)
 
+    print(a_queue)
+    wutang = ''
     while a_queue.size() > 0:
         val = a_queue.dequeue()
-        print('dequeue(): {}'.format(val))
+        wutang += val
+
+    print(wutang)
+    print(a_queue)
 
 
 class Node:
@@ -72,14 +77,17 @@ class Queue:
         """
         generates a string representing the queue
         """
-        a_string = '[front]'
-        current = self._front
-        while current.next is not None:
-            a_string += '->[{}]'.format(current.value)
-            current = current.next
-        a_string += '[{}]->'.format(current.value)
-        a_string += '[rear]'
-        return a_string
+        if self._front is not None:
+            a_string = '[front]'
+            current = self._front
+            while current.next is not None:
+                a_string += '->[{}]'.format(current.value)
+                current = current.next
+                a_string += '[{}]->'.format(current.value)
+            a_string += '[rear]'
+            return a_string
+        else:
+            return 'The state queue: front - {}, last -{}'.format(self._front, self._rear)
 
     def size(self):
         """
