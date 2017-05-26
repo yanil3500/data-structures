@@ -3,7 +3,7 @@ Queue class declaration
 """
 
 
-def main():
+def main(): # pragma: no cover
     """
     the main function
     """
@@ -15,19 +15,19 @@ def main():
 
     print(a_queue)
     print('peek(): {}'.format(a_queue.peek()))
+    print('size(): {}'.format(a_queue.size()))
     wutang = ''
-    while a_queue.size() > 0:
-        val = a_queue.dequeue()
-        wutang += val
 
-    print('peek(): {}'.format(a_queue.peek()))
-    print(wutang)
+    a_queue.make_it_empty()
+
     print(a_queue)
-    a_queue.dequeue()
+    print(wutang)
+    print('peek(): {}'.format(a_queue.peek()))
+    print('size(): {}'.format(a_queue.size()))
+    # a_queue.dequeue()
 
 
-
-class Node:
+class Node: # pragma: no cover
     def __init__(self, value):
         """
         initializer for node supporting class
@@ -88,11 +88,11 @@ class Queue:
             while current.next is not None:
                 a_string += '->[{}]'.format(current.value)
                 current = current.next
-                a_string += '[{}]->'.format(current.value)
+            a_string += '[{}]->'.format(current.value)
             a_string += '[rear]'
             return a_string
         else:
-            return 'The state queue: front - {}, last -{}'.format(self._front, self._rear)
+            return 'The state of the queue: front - {}, last -{}'.format(self._front, self._rear)
 
     def size(self):
         """
@@ -114,6 +114,13 @@ class Queue:
         return the number of elements in queue
         """
         return self.size()
+
+    def make_it_empty(self):
+        """
+        empties the queue
+        """
+        while self.size() > 0:
+            self.dequeue()
 
 
 if __name__ == "__main__":
