@@ -3,7 +3,7 @@ Queue class declaration
 """
 
 
-def main(): # pragma: no cover
+def main():  # pragma: no cover
     """
     the main function
     """
@@ -27,7 +27,7 @@ def main(): # pragma: no cover
     # a_queue.dequeue()
 
 
-class Node: # pragma: no cover
+class Node:  # pragma: no cover
     def __init__(self, value):
         """
         initializer for node supporting class
@@ -115,7 +115,7 @@ class Queue:
         """
         return self.size()
 
-    def make_it_empty(self):
+    def make_it_empty(self):  # pragma: no cover
         """
         empties the queue
         """
