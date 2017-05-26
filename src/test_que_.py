@@ -9,13 +9,6 @@ ENQUEUE_TABLE = [
     ([], 'one', 1)
 ]
 
-DEQUEUE_TABLE = [
-    (1),
-    ('two'),
-    ([1, 2, 3, 4, 5])
-]
-
-
 @pytest.fixture
 def empty_que():
     """Return empty queue fixture."""
@@ -31,6 +24,13 @@ def que_with_values():
     for i in range(10):
         q.enqueue(i + 1)
 
+    return q
+
+@pytest.fixture
+def que_with_one_value():
+    from que_ import Queue
+    q = Queue()
+    q.enqueue(1)
     return q
 
 def test_init(empty_que):
@@ -59,6 +59,17 @@ def test_dequeue(que_with_values):
     from que_ import Node
     dq_value = que_with_values.dequeue()
     assert  dq_value == 1 and que_with_values._length == 9 and que_with_values._front.value == 2
+
+
+def test_dequeue_one_value(que_with_one_value):
+    """
+    Assert if dequeue is valid with queue with one value.
+    que_with_one_value is (1)
+    """
+    from que_ import Queue
+    from que_ import Node
+    dq_value = que_with_one_value.dequeue()
+    assert  dq_value == 1 and que_with_one_value._length == 0 and que_with_one_value._front is None
 
 
 def test_dequeue_empty_queue(empty_que):
