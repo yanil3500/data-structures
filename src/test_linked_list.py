@@ -79,7 +79,7 @@ def test_pop(val, result):
     helper_teardown(MOCK_LINKED_LIST)
     MOCK_LINKED_LIST.push(val)
     temp_node = (MOCK_LINKED_LIST.pop())
-    assert temp_node.val == result
+    assert temp_node == result
 
 
 @pytest.mark.parametrize('val, result', PARAMETERS_LIST_FOR_SIZE)

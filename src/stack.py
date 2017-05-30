@@ -16,7 +16,6 @@ class Stack(object):
         else:
             raise TypeError('You need to use an iterable or no arguments.')
 
-
     def push(self, value):
         """
         uses the linked list as the underlying data structure
@@ -36,7 +35,7 @@ class Stack(object):
         return self._container.length
 
 
-def main(): # pragma: no cover
+def main():  # pragma: no cover
     """
     main function
     """
@@ -44,7 +43,6 @@ def main(): # pragma: no cover
     print(dir(a_stack))
 
 
-
-if __name__ == '__main__': # pragma: no cover
+if __name__ == '__main__':  # pragma: no cover
     main()
 
