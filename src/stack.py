@@ -18,31 +18,20 @@ class Stack(object):
 
     def push(self, value):
         """
-        uses the linked list as the underlying data structure
+        The push method on our stack uses the linked list's push function as the underlying method by which items are added onto our stack.
         """
         self._container.push(value)
 
     def pop(self):
         """
-        uses the linked list as the underlying data structure,
+        The pop method on our stack uses the linked list's pop function as the underlying method by which items are removed from the stack.
         """
         return self._container.pop()
 
     def __len__(self):
         """
-        allows for the built-in len func
+        This function definition allows for the built-in len func to be used.
         """
         return self._container.length
 
-
-def main():  # pragma: no cover
-    """
-    main function
-    """
-    a_stack = Stack([1, 2, 3, 4, 5, 'A', 'B'])
-    print(dir(a_stack))
-
-
-if __name__ == '__main__':  # pragma: no cover
-    main()
 
