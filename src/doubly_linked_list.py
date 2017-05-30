@@ -1,10 +1,10 @@
 class Node:
     """
-    node class
+    This is an implementation of a node class.
     """
     def __init__(self, value):
         """
-        node initializer
+        The __init__ method creates an instance of the Node class when called. The Node class is used a supporting class in our Doubly Linked List implementation.
         """
         self.prev = None
         self.value = value
@@ -13,11 +13,11 @@ class Node:
 
 class DoublyLinkedList:
     """
-    doubly linked list class
+    This is an implementation of a doubly linked list.
     """
     def __init__(self):
         """
-        DoublyLinkedList initializer
+        The __init__ method creates an instance of the DoublyLinkedList class when called.
         """
         self.head = None
         self.tail = None
@@ -25,7 +25,7 @@ class DoublyLinkedList:
 
     def push(self, value):
         """
-        adds value to beginning of the list
+        The push method adds value to the beginning of the doubly linked list.
         """
         if self.head is None:
             self.length += 1
@@ -38,7 +38,7 @@ class DoublyLinkedList:
 
     def pop(self):
         """
-        removes the first value off the list and returns it
+        The pop method removes the first value from the doubly linked list and returns it.
         """
         try:
             if self.head is self.tail:
@@ -58,7 +58,7 @@ class DoublyLinkedList:
 
     def append(self, value):
         """
-        adds values to end of the list
+        The append method adds values to end of the list.
         """
         if self.head is None:
             self.head = self.tail = Node(value)
@@ -72,13 +72,13 @@ class DoublyLinkedList:
 
     def __len__(self):
         """
-        returns the length of the linked list
+        __len__ returns the length of the doubly linked list.
         """
         return self.length
 
     def shift(self):
         """
-        removes the last value from the list
+        The shift method removes the last value from the list.
         """
         try:
             if self.tail is self.head:

@@ -100,20 +100,6 @@ def helper_teardown(a_list):
     a_list.length = 0
 
 
-
-
-# @pytest.fixture()
-# def test_empty_dll():
-#     """
-#     prepare an empty dll for testing purposes
-#     """
-#     from doubly_linked_list import DoublyLinkedList
-#     a_test_dll = DoublyLinkedList()
-#     return a_test_dll
-
-
-
-
 def test_init_for_doubly_linked_list_length():
     """
     tests to make sure that a recently initialized dll is empty
@@ -167,15 +153,6 @@ def test_pop(values, number_of_items_to_remove, result):
         counter += 1
     assert MOCK_DLL.length == result
     helper_teardown(MOCK_DLL)
-
-# def helper_build(a_list, *args):
-#     for value in args[0]:
-#         a_list.push(value)
-#     if count in args:
-#         count = args[1]
-#         number_of_items = args[2]
-#         while count < number_of_items:
-#             a_list.args[3]()
 
 
 @pytest.mark.parametrize('values, number_of_items_to_remove', PARAMETERS_LIST_FOR_POP_EXCEPTION)
