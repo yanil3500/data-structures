@@ -44,7 +44,7 @@ class LinkedList:
             temp_node = self.head
             self.head = self.head.next
             self.length -= 1
-            return temp_node
+            return temp_node.val
         else:
             raise IndexError('Does not contain anymore elements. Cannot remove non-existing elements.')
 
