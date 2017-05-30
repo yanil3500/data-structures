@@ -6,7 +6,7 @@ Queue class declaration
 class Node:  # pragma: no cover
     def __init__(self, value):
         """
-        initializer for node supporting class
+        This is the initializer for the Node supporting class.
         """
         self.value = value
         self.next = None
@@ -15,14 +15,14 @@ class Node:  # pragma: no cover
 class Queue:
     def __init__(self):
         """
-        initializer for queue class
+        This is the initializer for the Queue class.
         """
         self._front = self._rear = None
         self._length = 0
 
     def enqueue(self, value):
         """
-        adds elements to the queue
+        The enqueue method adds items to our queue.
         """
         if not self._front:
             self._front = self._rear = Node(value)
@@ -34,7 +34,7 @@ class Queue:
 
     def dequeue(self):
         """
-        removes the elements in the order in which they were added
+        The dequeue method removes items from the queue in the order in which they were added.
         """
         if self._front is self._rear and self._front is not None:
             removed_item = self._front
@@ -51,13 +51,13 @@ class Queue:
 
     def size(self):
         """
-        returns the size of the list
+        The size method returns the size of the queue.
         """
         return self._length
 
     def peek(self):
         """
-        returns the next value in queue; returns None
+        The peek method retunrs the next value in queue; The peek method returns None if the queue is empty.
         """
         if not self._front:
             return None
@@ -66,6 +66,6 @@ class Queue:
 
     def __len__(self):  # pragma: no cover
         """
-        return the number of elements in queue
+        Defining the __len__ method for our Queue enables us to use the built-in len function.
         """
         return self.size()
