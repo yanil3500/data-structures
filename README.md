@@ -27,6 +27,12 @@ The sample code contained herein will hold a number of classic data structures i
 - `A Queue is a linear data structure in which the addition of elements takes place on one end and removal of elements takes place on the other.`
 
 **Deque**
-- **Implmentation**: `deque.py`
+- **Implementation**: `deque.py`
 - **Tests**: `test_deque.py`
 - `A Deque is a Queue that works at both ends. Data can be inserted at the head or tail, and retrieved from the head or the tail.`
+
+**Binary Heap**
+- **Reference**: [https://en.wikipedia.org/wiki/Binary_heap](https://en.wikipedia.org/wiki/Binary_heap)
+- **Implementation**: `binheap.py`
+- **Tests**: `test_binheap.py`
+- `A heap is a data structure that usually takes the form of a binary tree, stuffed inside of an array. A heap is sorted based on the 'heap' property that defines the order of nodes in the binary tree. Priority Queues use binary heaps as their underlying data structure:`

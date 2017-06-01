@@ -14,9 +14,8 @@ class BinaryHeap:
         self.items = []
         self.length = 0
         if some_iterable:
-            for value in range(some_iterable):
-                self.items.push(value)
-                self.length += 1
+            for value in some_iterable:
+                self.push(value)
 
     def push(self, value):
         """
@@ -54,7 +53,7 @@ class BinaryHeap:
 
     def parent_index(self, index):
         """
-        This method calculates the index of the parent value
+        This method calculates the index of the parent 
         """
         return int((index - 1) / 2)
 
@@ -64,27 +63,24 @@ class BinaryHeap:
         """
         if self.length == 0:
             raise IndexError('Cannot remove items from an empty heap.')
-        elif self.length == 1:
+        if self.length == 1:
             self.length -= 1
             return self.items.pop()
-        else:
-            # Store the min-value (root)
-            root_value = self.items[0]
-            # Removes the last item in our heap and places it at the beginning
-            self.items[0] = self.items.pop()
-            # Calls the min_heapify method to restore the min-heap property (that is, both children must have values greater than their parent)
-            self.length -= 1
-            self.min_heapify(0)
-            return root_value
+        # Store the min-value (root)
+        root_value = self.items[0]
+        # Removes the last item in our heap and places it at the beginning
+        self.items[0] = self.items.pop()
+        # Calls the min_heapify method to restore the min-heap property (that is, both children must have values greater than their parent)
+        self.length -= 1
+        self.min_heapify()
+        return root_value
 
-    def min_heapify(self, index):
-        # First, we'll get the indices for the children of the parent index that passed in
-        left_child_index = self.left_child_index(index)
-        right_child_index = left_child_index + 1
-
+    def min_heapify(self, index=0):
         # Assign the index into a min_index variable; I'm assuming the index being passed in maps to the smallest value in our heap.
         min_index = index
-        print('Left child index: {} size_of_heap: {}'.format(left_child_index, self.length))
+        # We'll get the indices for the children of the parent index that passed in
+        left_child_index = self.left_child_index(index)
+        right_child_index = left_child_index + 1
         # The self.right_child_index(index) < self.length condition check ensures that our indices do not go out of range
         if self.right_child_index(index) < self.length:
             # We first determine if the value at the left_child_index is less than the value at the right_child_index
