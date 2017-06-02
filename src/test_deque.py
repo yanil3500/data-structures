@@ -94,7 +94,7 @@ def test_pop_empty_deque_error_raised(empty_deque):
 @pytest.mark.parametrize('number_of_calls_to_pop, result', PARAMETERS_FOR_POP_AND_POPLEFT)
 def test_size(number_of_calls_to_pop, result, deque_with_values):
     """
-    Asserts the after x number of calls to the pop function, the deque will be length of size - x
+    This function asserts that after x number of calls to the pop function, the deque will be length of size - x
     """
     for i in range(number_of_calls_to_pop):
         deque_with_values.pop()
