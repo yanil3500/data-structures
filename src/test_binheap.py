@@ -57,6 +57,7 @@ POP_ONE_VALUE_TABLE = [
 
 @pytest.fixture
 def empty_bin_heap():
+    """Empty bin heap fixture."""
     from binheap import BinaryHeap
     bin_heap = BinaryHeap()
     return bin_heap
@@ -64,31 +65,33 @@ def empty_bin_heap():
 
 @pytest.fixture
 def bin_heap_with_values():
+    """Bin heap with one value"""
     from binheap import BinaryHeap
     return BinaryHeap([4, 9, 3, 18, 1, 6])
 
 
 def test_init_no_params(empty_bin_heap):
-    from binheap import BinaryHeap
+    """Assert init function with no iterable."""
     assert empty_bin_heap.length == 0
 
 
 @pytest.mark.parametrize('list, length', INIT_VALUES_TABLE)
 def test_init_with_values(list, length):
+    """Assert init function with an iterable."""
     from binheap import BinaryHeap
     assert BinaryHeap(list).length == length
 
 
 @pytest.mark.parametrize('value', VALUES_TO_PUSH_TO_EMPTY_BINHEAP)
 def test_push_empty_bin_heap(empty_bin_heap, value):
-    from binheap import BinaryHeap
+    """Assert that pushing to an empty bin heap works."""
     empty_bin_heap.push(value)
     assert empty_bin_heap.items[0] == value
 
 
 @pytest.mark.parametrize('value, list_after_push', VALUES_TO_PUSH_TO_BINHEAP_WITH_VALUES)
 def test_push_bin_heap_with_values(value, list_after_push, bin_heap_with_values):
-    from binheap import BinaryHeap
+    """Assert that pushing to a heap with values passes."""
     bin_heap = bin_heap_with_values
     bin_heap.push(value)
     assert bin_heap.items == list_after_push
