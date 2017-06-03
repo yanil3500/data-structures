@@ -43,6 +43,18 @@ PARENT_INDEX_TABLE = [
 ]
 
 
+POP_TABLE = [
+    ([4, 9, 3, 18, 1, 6], 1, [3, 6, 4, 18, 9]),
+    ([75, 25, 85, 15, 95, 5], 5, [15, 25, 85, 75, 95])
+]
+
+POP_ONE_VALUE_TABLE = [
+    (5),
+    (77),
+    (100)
+]
+
+
 @pytest.fixture
 def empty_bin_heap():
     from binheap import BinaryHeap
@@ -116,3 +128,23 @@ def test_parent_index(list, child_index, parent_index):
     assert bh.parent_index(child_index) == parent_index
 
 
+@pytest.mark.parametrize('list, popped_value, list_after_pop', POP_TABLE)
+def test_pop(list, popped_value, list_after_pop):
+    """Asssert that pop function pops correct value and leaves correct binary heap."""
+    from binheap import BinaryHeap
+    bh = BinaryHeap(list)
+    assert bh.pop() == popped_value and bh.items == list_after_pop
+
+
+def test_pop_empty_bin_heap(empty_bin_heap):
+    """Assert that pop raises an index error when we try to pop an empty bin heap."""
+    with pytest.raises(IndexError):
+        empty_bin_heap.pop()
+
+
+@pytest.mark.parametrize('value', POP_ONE_VALUE_TABLE)
+def test_pop_one_value_in_bin_heap(value):
+    """Assert that pop functions for one value."""
+    from binheap import BinaryHeap
+    bh = BinaryHeap([value])
+    assert bh.pop() == value and not bh.items
