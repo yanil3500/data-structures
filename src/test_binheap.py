@@ -27,6 +27,21 @@ SWAP_TABLE = [
     ([99, 1, 88, 2, 77], 2, 3, 2, 88)
 ]
 
+LEFT_CHILD_TABLE = [
+    ([5, 2, 1, 8, 9 ,18], 0, 1),
+    ([4, 9, 3, 18, 1, 6], 2, 5)
+]
+
+RIGHT_CHILD_TABLE = [
+    ([5, 2, 1, 8, 9 ,18], 0, 2),
+    ([4, 9, 3, 18, 1, 6], 2, 6)
+]
+
+PARENT_INDEX_TABLE = [
+    ([5, 2, 1, 8, 9, 18], 3, 1),
+    ([4, 9, 3, 18, 1, 6], 4, 1)
+]
+
 
 @pytest.fixture
 def empty_bin_heap():
@@ -75,3 +90,29 @@ def test_swap(list, first_index, second_index, new_first_value, new_second_value
     bh.items = list
     bh.swap(first_index, second_index)
     assert bh.items[first_index] == new_first_value and bh.items[second_index] == new_second_value
+
+
+@pytest.mark.parametrize('list, parent_index, left_index', LEFT_CHILD_TABLE)
+def test_left_child_index(list, parent_index, left_index):
+    """Assert that we get correct left child index."""
+    from binheap import BinaryHeap
+    bh = BinaryHeap(list)
+    assert bh.left_child_index(parent_index) == left_index
+
+
+@pytest.mark.parametrize('list, parent_index, right_index', RIGHT_CHILD_TABLE)
+def test_right_child_index(list, parent_index, right_index):
+    """Assert that we get correct right child index."""
+    from binheap import BinaryHeap
+    bh = BinaryHeap(list)
+    assert bh.right_child_index(parent_index) == right_index
+
+
+@pytest.mark.parametrize('list, child_index, parent_index', PARENT_INDEX_TABLE)
+def test_parent_index(list, child_index, parent_index):
+    """Assert that we get correct parent index."""
+    from binheap import BinaryHeap
+    bh = BinaryHeap(list)
+    assert bh.parent_index(child_index) == parent_index
+
+
