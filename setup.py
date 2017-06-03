@@ -3,7 +3,7 @@ setup for data-structures
 """
 from setuptools import setup
 
-DEPENDENCIES = ['pytest', 'pytest-cov', 'ipython']
+DEPENDENCIES = ['pytest', 'pytest-cov', 'ipython', 'future', 'importlib']
 MODULES = ['linked_list', 'stack', 'doubly_linked_list', 'deque', 'binheap']
 EXTRA_PACKAGES = {
     'test': ['tox']
