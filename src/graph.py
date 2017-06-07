@@ -22,7 +22,7 @@ class Graph():
         This method returns a list containing all of the edges
         """
         a_list = []
-        for key in self.graph_dict.items:
+        for key in self.graph_dict.items():
             a_list.extend(self.graph_dict[key])
         return a_list
 
@@ -32,7 +32,7 @@ class Graph():
         """
         if val not in self.graph_dict:
             self.size += 1
-            self.graph_dict[val] = [val]
+            self.graph_dict[val] = []
 
     def add_edge(self, val1, val2):
         """
