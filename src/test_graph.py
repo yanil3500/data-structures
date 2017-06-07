@@ -10,6 +10,12 @@ NODES_TABLE = [
 ]
 
 
+EDGES_TABLE = [
+    ([('A', 'B'), ('A', 'C'), ('B','D'), ('B', 'E'), ('C', 'F')], [('A', ['B', 'C']), ('B', ['D', 'E']), ('C', ['F'])]),
+    ([('A', 'B'), ('B', 'C'), ('C', 'D'), ('D', 'E'), ('E', 'F'), ('F', 'A')], [('A', ['B']), ('B', ['C']), ('C', ['D']), ('D', ['E']), ('E', ['F']), ('F', ['A'])])
+]
+
+
 @pytest.fixture
 def empty_graph():
     from graph import Graph
@@ -40,9 +46,13 @@ def binary_tree_graph():
     graph.add_edge('C', 'F')
 
 
+############### TESTS #######################
+
+
 def test_init(empty_graph):
     """Test init method."""
     assert empty_graph.graph_dict == {}
+
 
 @pytest.mark.parametrize('nodes', NODES_TABLE)
 def test_nodes(nodes):
@@ -65,3 +75,16 @@ def test_has_node(nodes):
 
     for node in nodes:
         assert graph.has_node(node)
+
+
+@pytest.mark.parametrize('edges, edges_output', EDGES_TABLE)
+def test_edges(edges, edges_output):
+    """Tests if we have correct set of edges."""
+    from graph import Graph
+    graph = Graph()
+
+    for set_of_edges in edges:
+        graph.add_edge(set_of_edges[0], set_of_edges[1])
+
+    assert graph.edges() == edges_output
+
