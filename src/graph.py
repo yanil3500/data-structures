@@ -32,7 +32,7 @@ class Graph():
         """
         if val not in self.graph_dict:
             self.size += 1
-            self.graph_dict[val] = [] 
+            self.graph_dict[val] = []
 
     def add_edge(self, val1, val2):
         """
