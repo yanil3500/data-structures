@@ -9,6 +9,7 @@ class Graph():
         This is the initializer for the Graph class.
         """
         self.graph_dict = {}
+        self.size = 0
 
     def nodes(self):
         """
@@ -30,6 +31,7 @@ class Graph():
         This method adds a node to our graph
         """
         if val not in self.graph_dict:
+            self.size += 1
             self.graph_dict[val] = [val]
 
     def add_edge(self, val1, val2):
@@ -46,6 +48,7 @@ class Graph():
             raise KeyError('The (key) node is not in the graph.')
         for key in self.graph_dict[val]:
             self.graph_dict[key].remove(val)
+            self.size -= 1
         del self.graph_dict[val]
 
     def del_edge(self, val1, val2):
@@ -67,7 +70,7 @@ class Graph():
 
     def neighbors(self, val):
         """
-        This method checks if the given value has any neighbors.
+        This method checks if the given value has any neighbors. Returns list of neighbors if true
         """
         if val not in self.graph_dict:
             raise KeyError("The node not present in the graph.")
