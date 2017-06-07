@@ -21,7 +21,7 @@ class Graph():
         This method returns a list containing all of the edges
         """
         a_list = []
-        for key in self.graph_dict.items:
+        for key in self.graph_dict.items():
             a_list.extend(self.graph_dict[key])
         return a_list
 
