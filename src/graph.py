@@ -1,5 +1,4 @@
 
-
 class Graph():
     """
     The graph class will be used o represent the nodes
@@ -22,8 +21,9 @@ class Graph():
         This method returns a list containing all of the edges
         """
         a_list = []
-        for key in self.graph_dict.items():
-            a_list.extend(self.graph_dict[key])
+        for key in self.graph_dict.keys():
+            if self.graph_dict[key]:
+                a_list.append((key, self.graph_dict[key]))
         return a_list
 
     def add_node(self, val):
@@ -32,7 +32,7 @@ class Graph():
         """
         if val not in self.graph_dict:
             self.size += 1
-            self.graph_dict[val] = []
+            self.graph_dict[val] = [] 
 
     def add_edge(self, val1, val2):
         """
@@ -84,3 +84,18 @@ class Graph():
         if val1 not in self.graph_dict or val2 not in self.graph_dict:
             raise KeyError("The nodes are not present in the graph.")
         return val2 in self.graph_dict[val1]
+
+def main():
+    a_graph = Graph()
+    a_graph.add_edge('a', 'b')
+    a_graph.add_edge('a', 'c')
+    a_graph.add_edge('b', 'h')
+    a_graph.add_edge('b', 'i')
+    a_graph.add_edge('h', 'g')
+    a_graph.add_edge('c', 'f')
+    a_graph.add_edge('c', 'g')
+    a_graph.add_edge('g', 'h')
+    print(a_graph.edges())
+
+if __name__ == "__main__":
+    main()
