@@ -16,6 +16,12 @@ EDGES_TABLE = [
 ]
 
 
+ADD_NODE_TABLE = [
+    (['A', 'B', 'C', 'D', 'E', 'F']),
+    ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+]
+
+
 @pytest.fixture
 def empty_graph():
     from graph import Graph
@@ -88,3 +94,35 @@ def test_edges(edges, edges_output):
 
     assert graph.edges() == edges_output
 
+
+@pytest.mark.parametrize('nodes_to_add', ADD_NODE_TABLE)
+def test_add_node(nodes_to_add):
+    """Tests if we add nodes to graph correctly."""
+    from graph import Graph
+    graph = Graph()
+
+    for node in nodes_to_add:
+        graph.add_node(node)
+
+    assert graph.nodes() == nodes_to_add
+
+
+def test_del_node_with_no_nodes(empty_graph):
+    """Tests if del_node method handles empty graph correctly."""
+    from graph import Graph
+    with pytest.raises(KeyError):
+        empty_graph.del_node('A')
+
+
+def test_del_node_with_no_edges(graph_with_no_edges):
+    """Tests if we can delete nodes from graph with no edges."""
+    from graph import Graph
+    graph_with_no_edges.del_node('A')
+    assert graph_with_no_edges.nodes() == ['B', 'C', 'D', 'E', 'F']
+
+
+def test_del_nodes_with_edges(binary_tree_graph):
+    """Test if we can delete nodes from a graph with edges. """
+    from graph import Graph
+    binary_tree_graph.del_node('C')
+    assert binary_tree_graph.nodes() == ['A', 'B', 'D', 'E', 'F']
