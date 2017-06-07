@@ -34,6 +34,9 @@ def graph_with_no_edges():
 
 @pytest.fixture
 def binary_tree_graph():
+    """
+    a fixture for a binary tree graph
+    """
     from graph import Graph
     graph = Graph()
     for letter in ['A', 'B', 'C', 'D', 'E', 'F']:
@@ -49,6 +52,7 @@ def binary_tree_graph():
 def test_init(empty_graph):
     """Test init method."""
     assert empty_graph.graph_dict == {}
+
 
 @pytest.mark.parametrize('nodes', NODES_TABLE)
 def test_nodes(nodes):
