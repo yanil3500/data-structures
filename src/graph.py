@@ -30,7 +30,7 @@ class Graph():
         This method adds a node to our graph
         """
         if val not in self.graph_dict:
-            self.graph_dict[val] = [val]
+            self.graph_dict[val] = []
 
     def add_edge(self, val1, val2):
         """
