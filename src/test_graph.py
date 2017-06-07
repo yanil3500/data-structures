@@ -62,3 +62,6 @@ def test_has_node(nodes):
     graph = Graph()
     for node in nodes:
         graph.add_node(node)
+
+    for node in nodes:
+        assert graph.has_node(node)
