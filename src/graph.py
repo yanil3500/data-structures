@@ -85,17 +85,3 @@ class Graph():
             raise KeyError("The nodes are not present in the graph.")
         return val2 in self.graph_dict[val1]
 
-def main():
-    a_graph = Graph()
-    a_graph.add_edge('a', 'b')
-    a_graph.add_edge('a', 'c')
-    a_graph.add_edge('b', 'h')
-    a_graph.add_edge('b', 'i')
-    a_graph.add_edge('h', 'g')
-    a_graph.add_edge('c', 'f')
-    a_graph.add_edge('c', 'g')
-    a_graph.add_edge('g', 'h')
-    print(a_graph.edges())
-
-if __name__ == "__main__":
-    main()
