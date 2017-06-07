@@ -47,8 +47,9 @@ class Graph():
         if val not in self.graph_dict:
             raise KeyError('The (key) node is not in the graph.')
         for key in self.graph_dict[val]:
-            self.graph_dict[key].remove(val)
-            self.size -= 1
+            if val in self.graph_dict[key]:
+                self.graph_dict[key].remove(val)
+                self.size -= 1
         del self.graph_dict[val]
 
     def del_edge(self, val1, val2):

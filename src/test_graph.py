@@ -51,6 +51,8 @@ def binary_tree_graph():
     graph.add_edge('B', 'E')
     graph.add_edge('C', 'F')
 
+    return graph
+
 
 ############### TESTS #######################
 
