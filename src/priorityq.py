@@ -35,7 +35,7 @@ class PriorityQ:
     def peek(self):
         """Return the most important value in our priority queue.
         If we have more than one value with the hightest priority, we return the first value in the priority queue. """
-        pass
+        return self.items[0][0]
 
 
     def bubble_up(self):
@@ -51,17 +51,46 @@ class PriorityQ:
 
     def bubble_down(self):
         """Perform a bubble-down operation after pop operation."""
-        current_index = self.items[0]
+        current_index = 0
         left_child_index = self.get_left_child(current_index)
         right_child_index = self.get_right_child(current_index)
 
         while left_child_index < len(self.items):
-            while right_child_index < len(self.items):
+            if right_child_index < len(self.items):
                 # we have two children to compare
+                if self.items[left_child_index][1] < self.items[right_child_index][1]:
+                    # check to see if left child is less than current
+                    if self.items[left_child_index][1] < self.items[current_index][1]:
+                        # swap current and left child
+                        self.items[left_child_index], self.items[current_index] = self.items[current_index], self.items[left_child_index]
+                        current_index = left_child_index
+                        left_child_index = self.get_left_child(current_index)
+                        right_child_index = self.get_right_child(current_index)
 
+                    else:
+                        break
 
-            # we have a left child to compare
+                elif self.items[right_child_index][1] < self.items[current_index][1]:
+                    # swap current and right child
+                    self.items[right_child_index] , self.items[current_index] = self.items[current_index], self.items[right_child_index]
+                    current_index = right_child_index
+                    left_child_index = self.get_left_child(current_index)
+                    right_child_index = self.get_right_child(current_index)
 
+                else:
+                    break
+
+            # we just have a left child to compare
+            else:
+                if self.items[left_child_index][1] < self.items[current_index][1]:
+                    # swap current and left child
+                    self.items[left_child_index], self.items[current_index] = self.items[current_index], self.items[left_child_index]
+                    current_index = left_child_index
+                    left_child_index = self.get_left_child(current_index)
+                    right_child_index = self.get_right_child(current_index)
+
+                else:
+                    break
 
 
     def get_parent_index(self, child_index):
@@ -79,7 +108,7 @@ class PriorityQ:
         return (2 * parent_index) + 2
 
 
-if __name__ == '__main__':
+def main():
     pq = PriorityQ()
     pq.insert(4, 10)
     pq.insert(6, 2)
@@ -89,3 +118,6 @@ if __name__ == '__main__':
     pq.pop()
 
     print(pq.items)
+
+
+main()
