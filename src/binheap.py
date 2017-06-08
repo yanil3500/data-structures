@@ -29,6 +29,7 @@ class BinaryHeap:
         """
         This function will be responsible for swapping the values at the indices that are passed in.
         """
+
         self.items[first_index], self.items[second_index] = self.items[second_index], self.items[first_index]
 
     def bubble_up(self, index):
@@ -101,4 +102,18 @@ class BinaryHeap:
         if min_index != index:
             self.swap(index, min_index)
             self.min_heapify(min_index)
+
+
+def main():
+    """
+    main function
+    """
+    a_bin_heap = BinaryHeap(some_iterable=[8, 7, 57, 23, 5, 10294, 4, 31, -10, 89, 56, 10, 9, 11])
+    print(a_bin_heap.items)
+
+    while len(a_bin_heap.items) > 0:
+        print('pop(): {}'.format(a_bin_heap.pop()))
+
+if __name__ == "__main__":
+    main()
 
