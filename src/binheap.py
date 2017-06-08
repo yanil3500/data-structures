@@ -91,7 +91,10 @@ class BinaryHeap:
             if right_child_index < self.length and self.items[right_child_index] < self.items[min_index]:
             #if true, right_child_index is the location in our heap that has our minimum value
                 min_index = right_child_index
-
+        if self.left_child_index(index) < self.length:
+            if self.items[left_child_index] < self.items[min_index]:
+                min_index = left_child_index
+        
         # if the min_index is not equal to the index that is passed in.
         # we'll swap the values at the indices, min_index and index
         # then we'll recursively call our function until our condition evaluates to false
