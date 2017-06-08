@@ -4,8 +4,25 @@ Tests for Graph
 """
 import pytest
 
+# I'm assuming that our depth first traversal algorithm is NOT going to visit same place twice
+# Ex: 'Edges that begin at different vertices but end the same vertex'
+# If there is an edge from H -> G, and there is an edge from C -> G, omit the second instance of same vertex from the list
+# of vertices that have been visitied
 PARAMETERS_FOR_TEST_DEPTH_FIRST_TRAVERSAL = [
-    [('A', 'B'), ('A' 'C'), ('B', 'H'), ('B', 'I'), ('H', 'G'), ('C', 'F'), ('C', 'G')]
+    ([('A', 'B'), ('A', 'C'), ('B', 'H'), ('B', 'I'), ('H', 'G'), ('C', 'F'), ('C', 'G')], 'A', ['A', 'B', 'H', 'G', 'I', 'C', 'F']),
+    ([(1, 7), (1, 8), (7, -10), (7, 5), (-10, 3), (3, 23), (3, -2), (-2, 57)], 1, [1, 7, -10, 3, 23, -2, 57, 5, 8]),
+    ([('dan', 'jeff'), ('dan', 'brad'), ('brad', 'vinnie'), ('alex', 'dan'), ('alex', 'vinnie'), ('vinnie', 'tom'), ('vinnie', 'dog'), ('dog', 'clive'), ('dog', 'alex')], 'dan', ['dan', 'jeff', 'brad', 'vinnie', 'tom', 'dog', 'clive', 'alex']),
+    ([('G', 'F'), ('F', 'E'), ('F', 7), (7, 8)], 8, []),
+    ([('G', 89), (89, 1), (89, 2), (2, 1)], 'G', ['G', 89, 1, 2]),
+    ([('G', 89), (89, 1), (89, 2), (2, 1)], 2, [2, 1])
+]
+
+PARAMETERS_FOR_TEST_BREADTH_FIRST_TRAVERSAL = [
+    ([('A', 'B'), ('A' 'C'), ('B', 'H'), ('B', 'I'), ('H', 'G'), ('C', 'F'), ('C', 'G')], 'A', ['A', 'B', 'C', 'H', 'I', 'F', 'G']),
+    ([(1, 7), (1, 8), (7, -10), (7, 5), (-10, 3), (3, 23), (3, -2), (-2, 57)], 1, [1, 7, 8, -10, 5, 3, 23, -2, 57]),
+    ([('dan', 'jeff'), ('jeff', 'alex'), ('dan', 'brad'), ('brad', 'vinnie'), ('alex', 'dan'), ('alex', 'vinnie'), ('vinnie', 'tom'), ('vinnie', 'dog'), ('dog', 'clive'), ('dog', 'alex')], 'dan', ['dan', 'jeff', 'brad', 'alex', 'vinnie', 'tom', 'dog', 'clive']),
+    ([('G', 89), (89, 1), (89, 2), (2, 1)], 'G', ['G', 89, 1, 2]),
+    ([('G', 89), (89, 1), (89, 2), (2, 1)], 2, [2, 1])
 ]
 
 
@@ -136,3 +153,25 @@ def test_del_nodes_with_edges(binary_tree_graph):
     from graph import Graph
     binary_tree_graph.del_node('C')
     assert binary_tree_graph.nodes() == ['A', 'B', 'D', 'E', 'F']
+
+
+@pytest.mark.parametrize('vertices, start_val, result', PARAMETERS_FOR_TEST_DEPTH_FIRST_TRAVERSAL)
+def test_depth_first_traveral(vertices, start_val, result, empty_graph):
+    """
+    This function asserts that the method returns a list of vertices visited in DFS order
+    """
+    for vertex_to_vertex in vertices:
+        empty_graph.add_edge(vertex_to_vertex[0], vertex_to_vertex[1])
+    assert empty_graph.depth_first_traversal(start_val) == result
+
+
+@pytest.mark.parametrize('vertices, start_val, result', PARAMETERS_FOR_TEST_BREADTH_FIRST_TRAVERSAL)
+def test_breadth_first_traversal(vertices, start_val, result):
+    """
+    This function asserts that the method returns a list of vertices visited in DFS order
+    """
+    for vertex_to_vertex in vertices:
+        empty_graph.add_edge(vertex_to_vertex[0], vertex_to_vertex[1])
+    assert empty_graph.breadth_first_traversal(start_val) == result
+
+
