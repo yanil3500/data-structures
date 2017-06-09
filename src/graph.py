@@ -32,16 +32,16 @@ class Graph():
         """
         if val not in self.graph_dict:
             self.size += 1
-            self.graph_dict[val] = []
+            self.graph_dict[val] = {}
 
-    def add_edge(self, val1, val2):
+    def add_edge(self, val1, val2, weight=1):
         """
         this method adds a new edge to the graph connecting
         the node containing 'val1' and 'val2'
         """
         self.add_node(val1)
         self.add_node(val2)
-        self.graph_dict[val1].append(val2)
+        self.graph_dict[val1][val2] = weight
 
     def del_node(self, val):
         if val not in self.graph_dict:
@@ -61,7 +61,7 @@ class Graph():
         if val2 not in self.graph_dict[val1]:
             raise ValueError("The edge does not exists.")
         else:
-            self.graph_dict[val1].remove(val2)
+            self.graph_dict[val1].pop(val2, None)
 
     def has_node(self, val):
         """
@@ -86,3 +86,24 @@ class Graph():
             raise KeyError("The nodes are not present in the graph.")
         return val2 in self.graph_dict[val1]
 
+
+
+def main():
+    """
+    main function
+    """
+    a_graph = Graph()
+    a_graph.add_node('B')
+    a_graph.add_node('A')
+    a_graph.graph_dict['B']['C'] = 1
+    a_graph.add_edge('A', 'B', 100)
+    a_graph.add_edge('A', 'C', 3)
+    a_graph.add_edge('B', 'D', 50)
+    a_graph.add_edge('C', 'D', 5)
+    # a_graph.del_edge('B', 'D')
+    a_graph.del_node('A')
+    # print(a_graph.neighbors('B'))
+    # print(a_graph.adjacent('A', 'B'))
+
+if __name__ == "__main__":
+    main()
