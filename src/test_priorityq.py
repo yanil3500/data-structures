@@ -13,7 +13,7 @@ PARAMETERS_FOR_INSERT_WITH_PRIORITY_LEVELS = [
     ([(5, 1), (99, 56), (6, 4), (8, 10), (7, 6), (9, 10), (3, 2)], 7),
     ([(3, 4), (2, 1), (5, 8), (3, 6)], 4),
     ([(8, 9)], 1),
-    ([(300, 2), (300, 5)])
+    ([(300, 2), (300, 5)], 2)
 ]
 
 PARAMETERS_FOR_POP = [
@@ -30,7 +30,7 @@ PARAMETERS_FOR_PEEK = [
     ([(3, 4), (2, 1), (5, 8), (3, 6)], 2),
     ([(8, 9)], 8),
     ([(-19, 50), (55, 50), (7, 89), (2, 800)], -19),
-    ([(300, 2), (300, 5)])
+    ([(300, 2), (300, 5)], 300)
 ]
 
 
@@ -48,7 +48,7 @@ def test_init_empty_queue(empty_priorityq):
     """
     This function asserts that class initializer results in an empty priorityq
     """
-    assert empty_priorityq.length == 0
+    assert len(empty_priorityq.items) == 0
 
 @pytest.mark.parametrize('values, expected_priorityq_size', PARAMETERS_FOR_INSERT_WITH_PRIORITY_LEVELS)
 def test_insert_with_priority_levels(values, expected_priorityq_size, empty_priorityq):
@@ -58,7 +58,7 @@ def test_insert_with_priority_levels(values, expected_priorityq_size, empty_prio
     """
     for value_and_priority in values:
         empty_priorityq.insert(value_and_priority[0], priority=value_and_priority[1])
-    assert empty_priorityq.size == expected_priorityq_size
+    assert len(empty_priorityq.items) == expected_priorityq_size
 
 
 @pytest.mark.parametrize('values, number_calls_to_pop_function, expected_result', PARAMETERS_FOR_POP)
