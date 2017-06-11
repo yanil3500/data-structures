@@ -43,12 +43,12 @@ def empty_priorityq():
     return PriorityQ()
 
 
-
 def test_init_empty_queue(empty_priorityq):
     """
     This function asserts that class initializer results in an empty priorityq
     """
     assert len(empty_priorityq.items) == 0
+
 
 @pytest.mark.parametrize('values, expected_priorityq_size', PARAMETERS_FOR_INSERT_WITH_PRIORITY_LEVELS)
 def test_insert_with_priority_levels(values, expected_priorityq_size, empty_priorityq):
@@ -85,6 +85,3 @@ def test_peek(values, expected_result, empty_priorityq):
         empty_priorityq.insert(value_and_priority[0], priority=value_and_priority[1])
 
     assert empty_priorityq.peek() == expected_result
-
-
-
