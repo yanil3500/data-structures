@@ -1,6 +1,8 @@
 """
 Class definition for a BST
 """
+
+
 class BSTNode:
     """
     Helper class for BSTNode
@@ -104,9 +106,10 @@ class BST:
         """
         This method traverses the BST in a BFS fashion; That is, it traverses the BST, level by level
         """
+        from que_ import Queue
         if not self._root:
             raise IndexError("The BST is empty.")
-        a_queue = AQueue()
+        a_queue = Queue()
         a_queue.enqueue(self._root)
         a_list = []
         while not a_queue.is_empty():

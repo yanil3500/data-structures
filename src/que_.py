@@ -55,6 +55,12 @@ class Queue:
         """
         return self._length
 
+    def is_empty(self):
+        """
+        This method returns a boolean indicating whether or not the queue is empty
+        """
+        return self._length == 0
+        
     def peek(self):
         """
         The peek method retunrs the next value in queue; The peek method returns None if the queue is empty.
